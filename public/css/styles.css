@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+}
+
+.logo {
+    width: 50px;
+    height: 100px;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.navWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.navMenu {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-direction: row;
+    list-style-type: none
+}
