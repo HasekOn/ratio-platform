@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <title>Your work</title>
-</head>
-<header class = "header">
-    @include('helpers.header')
-</header>
-<div class="line"></div>
-<body>
+@include('helpers.header')
 
+<body>
+<div class="box">
+    <ul class = "taskMenu">
+        <li><a href="{{ url('/') }}">Inbox</a></li>
+        <li>To Do</li>
+        <li>Done</li>
+        <li><a href="{{ url('/create-task') }}">New Task</a></li>
+    </ul>
+    <div class="boxTask">
+        @foreach($tasks as $task)
+            <div class="task">
+                <p>{{ $task->name }}</p>
+                <p>{{ $task->status }}</p>
+                <p>{{ $task->timeEst }}</p>
+            </div>
+        @endforeach
+    </div>
+</div>
 </body>

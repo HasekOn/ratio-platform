@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\YourWorkController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [YourWorkController::class, 'index'])->name('ratio.home');
+
+Route::get('/projects', [ProjectController::class, 'index']);
+
+Route::get('/create-task', [TaskController::class, 'index']);
+Route::post('/create-task', [TaskController::class, 'store'])->name('post.created');
