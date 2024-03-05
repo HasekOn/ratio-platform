@@ -7,15 +7,18 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('pages.create_task');
     }
 
-    public function show(Task $task){
+    public function show(Task $task)
+    {
         return view('pages.task-show', compact('task'));
     }
 
-    public function store(){
+    public function store()
+    {
 
         \request()->validate([
             'name' => 'required|max:50',
@@ -35,12 +38,14 @@ class TaskController extends Controller
         return redirect()->route('ratio.home');
     }
 
-    public function edit(Task $task){
+    public function edit(Task $task)
+    {
         $editing = true;
         return view('pages.task-show', compact('task', 'editing'));
     }
 
-    public function update(Task $task){
+    public function update(Task $task)
+    {
 
         \request()->validate([
             'name' => 'required|max:50',
@@ -60,7 +65,8 @@ class TaskController extends Controller
         return redirect()->route('tasks.show', $task['id']);
     }
 
-    public function destroy(Task $id){
+    public function destroy(Task $id)
+    {
         $id->delete();
 
         return redirect()->route('ratio.home');

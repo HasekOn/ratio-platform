@@ -32,9 +32,7 @@
             </div>
         </div>
     @endsection
-
 @else
-
     @section('content')
         <body>
         <div class="boxTask">
@@ -57,5 +55,4 @@
         </div>
         </body>
     @endsection
-
 @endif
