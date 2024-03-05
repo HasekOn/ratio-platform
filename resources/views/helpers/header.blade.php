@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <title>Your work</title>
+    <title>{{ config('app.name') }}</title>
 </head>
 <header class = "header">
 <a href="{{ url('/') }}"><img class = "logo" src="images/ratio.png" alt="logo"></a>
@@ -19,3 +19,5 @@
     <img class = "profilePhoto" src="images/oldMan.jpg" alt="profilePhoto">
 </header>
 <div class="line"></div>
+
+@yield('content')

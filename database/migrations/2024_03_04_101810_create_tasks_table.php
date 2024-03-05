@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('effort')->nullable();
             $table->string('priority')->nullable();
-            $table->timestamp('timeEst')->nullable();
+            $table->date('timeEst')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });

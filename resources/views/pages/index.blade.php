@@ -1,5 +1,6 @@
-@include('helpers.header')
+@extends('helpers.header')
 
+@section('content')
 <body>
 <div class="box">
     <ul class = "taskMenu">
@@ -8,14 +9,11 @@
         <li>Done</li>
         <li><a href="{{ url('/create-task') }}">New Task</a></li>
     </ul>
-    <div class="boxTask">
-        @foreach($tasks as $task)
-            <div class="task">
-                <p>{{ $task->name }}</p>
-                <p>{{ $task->status }}</p>
-                <p>{{ $task->timeEst }}</p>
-            </div>
-        @endforeach
-    </div>
+        <div class="boxTask">
+            @foreach($tasks as $task)
+                @include('includes.task-card')
+            @endforeach
+        </div>
 </div>
 </body>
+@endsection
