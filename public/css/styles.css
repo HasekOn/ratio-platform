@@ -144,8 +144,18 @@ div span {
     position: absolute;
     top: 0;
     right: 30px;
-    font-size: 42px;
     transform: rotate(45deg);
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 42px;
+    color: white;
+}
+.close button {
+    background-color: transparent;
+    border: none;
+    font-size: 42px;
+    color: white;
     cursor: pointer;
 }
 
@@ -184,6 +194,7 @@ input{
     margin: 15px auto;
     border-radius: 5px;
     font-family: "Trebuchet MS", Tahoma, sans-serif;
+    cursor: pointer;
 }
 
 .delete{
@@ -194,4 +205,35 @@ input{
     background-color: transparent;
     border: none;
     color: red;
+}
+
+dialog{
+    width: 700px;
+    height: 90%;
+    background-color: #1a202c;
+    border-radius: 4px;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    color: white;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.search{
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+.searchBar {
+    border: #1a202c;
+    border-style: solid;
+}
+
+.searchButton {
+    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    height: 30px;
+    width: 50px;
 }
