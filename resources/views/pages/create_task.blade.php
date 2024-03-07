@@ -1,7 +1,9 @@
 <dialog class="dialog">
     <div class="bg-modal">
         <div class="modal-content">
-            <div class="close" id="close"><button autofocus>+</button></div>
+            <div class="close" id="close">
+                <button autofocus>+</button>
+            </div>
             <p>New Task</p>
             <form action="{{ route('tasks.created') }}" method="post">
                 @csrf
@@ -18,7 +20,8 @@
                 @error('timeEst')
                 <span> {{ "[" . $message . "]" }}</span>
                 @enderror
-                <div><input name="description" class="description" type="text" placeholder="Description" id="text-area"></div>
+                <div><input name="description" class="description" type="text" placeholder="Description" id="text-area">
+                </div>
                 @error('description')
                 <span> {{ "[" . $message . "]" }}</span>
                 @enderror
