@@ -9,7 +9,7 @@
             <li>Done</li>
         </ul>
         @include('pages.create_task')
-        <button>Show the dialog</button>
+        <button>Create new task</button>
         <div class="boxTask">
             <div class="search">
                 <h5>Search</h5>

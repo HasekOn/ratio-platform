@@ -2,6 +2,8 @@
     <div class="task">
         <p>{{ $task->name }}</p>
         <p>{{ $task->status }}</p>
-        <p>{{ \Carbon\Carbon::parse($task->timeEst)->format('M-d') }}</p>
+        @if(!empty($task->timeEst))
+            <p>{{ \Carbon\Carbon::parse($task->timeEst)->format('M-d') }}</p>
+        @endif
     </div>
 </a>

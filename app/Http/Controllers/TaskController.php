@@ -19,21 +19,9 @@ class TaskController extends Controller
 
     public function store()
     {
-
-        \request()->validate([
-            'name' => 'required|max:50',
-            'description' => 'max:500',
-            'timeEst' => 'nullable|after_or_equal:today'
-        ]);
-
-        $tasks = Task::create([
-            'name' => \request()->get('name'),
-            'status' => \request()->get('status'),
-            'effort' => \request()->get('effort'),
-            'priority' => \request()->get('priority'),
-            'timeEst' => \request()->get('timeEst'),
-            'description' => \request()->get('description'),
-        ]);
+        $validated = $this->validation(\request());
+        $validated['user_id'] = auth()->id();
+        Task::create($validated);
 
         return redirect()->route('ratio.home');
     }
@@ -46,21 +34,9 @@ class TaskController extends Controller
 
     public function update(Task $task)
     {
-
-        \request()->validate([
-            'name' => 'required|max:50',
-            'description' => 'max:500',
-            'timeEst' => 'nullable|after_or_equal:today'
-        ]);
-
-
-        $task['name'] = \request()->get('name', '');
-        $task['status'] = \request()->get('status', '');
-        $task['effort'] = \request()->get('effort', '');
-        $task['priority'] = \request()->get('priority', '');
-        $task['timeEst'] = \request()->get('timeEst', '');
-        $task['description'] = \request()->get('description', '');
-        $task->save();
+        $validated = $this->validation(\request());
+        $validated['user_id'] = auth()->id();
+        $task->update($validated);
 
         return redirect()->route('tasks.show', $task['id']);
     }
@@ -70,5 +46,17 @@ class TaskController extends Controller
         $id->delete();
 
         return redirect()->route('ratio.home');
+    }
+
+    public function validation(Request $request)
+    {
+        return $request->validate([
+            'name' => 'required|max:50',
+            'description' => 'max:500',
+            'timeEst' => 'nullable|after_or_equal:today',
+            'status' => 'nullable',
+            'effort' => 'nullable',
+            'priority' => 'nullable',
+        ]);
     }
 }

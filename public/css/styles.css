@@ -232,12 +232,26 @@ dialog::backdrop {
 }
 
 .searchBar {
-    border: #1a202c;
-    border-style: solid;
+    border: solid #1a202c;
 }
 
 .searchButton {
     font-family: "Trebuchet MS", Tahoma, sans-serif;
     height: 30px;
     width: 50px;
+}
+
+.loginInput {
+    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    height: 40px;
+    width: 60%;
+    background-color: white;
+}
+
+.submit {
+    font-family: "Trebuchet MS", Tahoma, sans-serif;
+    height: 40px;
+    width: 25%;
+    background-color: white;
+    cursor: pointer;
 }

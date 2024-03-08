@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class YourWorkController extends Controller
 {
     public function index()
     {
-        $tasks = Task::orderBy('created_at', 'DESC');
+        $user = Auth::user();
+        $tasks = Task::where('user_id', $user->id)->orderBy('created_at', 'DESC');;
         if (\request()->has('search')) {
             $tasks->where('name', 'like', '%' . \request()->get('search') . '%');
         }
