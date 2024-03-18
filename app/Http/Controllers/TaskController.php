@@ -26,6 +26,13 @@ class TaskController extends Controller
         return redirect()->route('ratio.home');
     }
 
+    public function destroy(Task $task)
+    {
+        $task->delete();
+
+        return redirect()->route('ratio.home');
+    }
+
     public function edit(Task $task)
     {
         $editing = true;
@@ -39,13 +46,6 @@ class TaskController extends Controller
         $task->update($validated);
 
         return redirect()->route('tasks.show', $task['id']);
-    }
-
-    public function destroy(Task $id)
-    {
-        $id->delete();
-
-        return redirect()->route('ratio.home');
     }
 
     public function validation(Request $request)

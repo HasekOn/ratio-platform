@@ -5,7 +5,7 @@
                 <button autofocus>+</button>
             </div>
             <p>New Task</p>
-            <form action="{{ route('tasks.created') }}" method="post">
+            <form action="{{ route('tasks.store') }}" method="post">
                 @csrf
                 <div class="name"><input name="name" type="text" placeholder="Name"></div>
                 @error('name')

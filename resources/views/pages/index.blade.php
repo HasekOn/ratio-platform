@@ -13,14 +13,16 @@
         <div class="boxTask">
             <div class="search">
                 <h5>Search</h5>
-                <form action="{{ route('ratio.home') }}" method="GET">
-                    <input class="searchBar" placeholder="..." type="text" name="search">
+                <form action="{{ route('ratio.home') }}" method="get">
+                    <input value="{{ request('search', '') }}" class="searchBar" placeholder="..." type="text" name="search">
                     <button class="searchButton">Search</button>
                 </form>
             </div>
-            @foreach($tasks as $task)
+            @forelse($tasks as $task)
                 @include('includes.task-card')
-            @endforeach
+            @empty
+                <p>No Results Found</p>
+            @endforelse
         </div>
     </div>
     </body>

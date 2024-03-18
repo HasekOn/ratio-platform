@@ -10,14 +10,14 @@
                     <label for="email" class="">Email:</label><br>
                     <input type="email" name="email" id="email" class="loginInput" placeholder="email">
                     @error('email')
-                    <span class=""> {{ $message }} </span>
+                    <span class=""> Invalid email </span>
                     @enderror
                 </div>
                 <div class="">
                     <label for="password" class="">Password:</label><br>
                     <input type="password" name="password" id="password" class="loginInput" placeholder="password">
                     @error('password')
-                    <span class=""> {{ $message }} </span>
+                    <span class=""> Wrong password </span>
                     @enderror
                 </div>
                 <div class="">

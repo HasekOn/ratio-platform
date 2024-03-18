@@ -20,7 +20,7 @@
                 <li>Ideas</li>
             </ul>
         </nav>
-        <form action="{{ route('logout') }}" method="POST">
+        <form action="{{ route('logout') }}" method="post">
             @csrf
             <button>Logout</button>
         </form>
