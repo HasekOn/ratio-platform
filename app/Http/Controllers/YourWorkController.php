@@ -11,13 +11,13 @@ class YourWorkController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $tasks = Task::where('user_id', $user->id)->orderBy('created_at', 'DESC');;
+        $tasks = Task::where('user_id', $user->id)->latest();
         if (\request()->has('search')) {
             $tasks->where('name', 'like', '%' . \request()->get('search') . '%');
         }
 
         return view('pages.index', [
-            'tasks' => $tasks->get()
+            'tasks' => $tasks->get(),
         ]);
     }
 }

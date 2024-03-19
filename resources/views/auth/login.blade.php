@@ -22,7 +22,7 @@
                 </div>
                 <div class="">
                     <label for="remember-me" class=""></label><br>
-                    <input type="submit" name="submit" class="submit" value="submit">
+                    <input type="submit" name="submit" class="submit" value="Log in">
                 </div>
                 <div class="">
                     <a href="/register" class="">Register here</a>

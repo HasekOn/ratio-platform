@@ -255,3 +255,19 @@ dialog::backdrop {
     background-color: white;
     cursor: pointer;
 }
+
+.editing {
+    border: solid #1a202c;
+}
+
+.userHeaderPage {
+    width: 15%;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}

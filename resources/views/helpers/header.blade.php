@@ -24,9 +24,12 @@
             @csrf
             <button>Logout</button>
         </form>
-        <a href="{{ url('/ratio.home') }}"></a>
-        {{ Auth::user()->name }}
-        <img class="profilePhoto" src="images/oldMan.jpg" alt="profilePhoto">
+        <a href="{{ route('profile') }}" class="userHeaderPage">
+            <div>
+                {{ Auth::user()->name }}
+                <img src="{{ Auth::user()->getImageURL() }}" class="profilePhoto">
+            </div>
+        </a>
     </header>
     <div class="line"></div>
 
