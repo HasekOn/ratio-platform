@@ -58,4 +58,9 @@ class User extends Authenticatable
         }
         return 'https://ui-avatars.com/api/?name=' . $this->name;
     }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'user_project', 'user_id', 'project_id')->withTimestamps();
+    }
 }

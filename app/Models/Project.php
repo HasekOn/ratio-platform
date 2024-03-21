@@ -21,4 +21,14 @@ class Project extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_project', 'project_id', 'user_id')->withTimestamps();
+    }
+
+    public function isProjectMember(User $user)
+    {
+        return $this->users()->where('user_id', $user->id)->exists();
+    }
 }
