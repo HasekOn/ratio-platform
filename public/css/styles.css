@@ -271,3 +271,19 @@ dialog::backdrop {
     object-fit: cover;
     margin-right: 10px;
 }
+
+.square{
+    padding: 15px;
+    border: black 1px solid;
+}
+
+.boxTaskInvisible {
+    margin-left: 10px;
+    width: 30%;
+    box-shadow: 1px 0 #4a5568;
+    display: none;
+}
+
+.active {
+    display: flex;
+}

@@ -24,4 +24,4 @@ Route::resource('users', UserController::class)->only('show', 'edit', 'update')
     ->middleware('auth');
 Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
 
-Route::get('/projects', [ProjectController::class, 'index'])->middleware('auth');
+Route::resource('projects', ProjectController::class)->middleware('auth');

@@ -14,7 +14,8 @@
             <div class="search">
                 <h5>Search</h5>
                 <form action="{{ route('ratio.home') }}" method="get">
-                    <input value="{{ request('search', '') }}" class="searchBar" placeholder="..." type="text" name="search">
+                    <input value="{{ request('search', '') }}" class="searchBar" placeholder="..." type="text"
+                           name="search">
                     <button class="searchButton">Search</button>
                 </form>
             </div>
@@ -24,20 +25,15 @@
                 <p>No Results Found</p>
             @endforelse
         </div>
+        {{--
+        <div class="boxTaskInvisible">
+            <div class="square">
+                @include('includes.one-task')
+            </div>
+        </div>
+        --}}
     </div>
     </body>
 
-    <script>
-        const dialog = document.querySelector("dialog");
-        const showButton = document.querySelector("dialog + button");
-        const closeButton = document.querySelector("dialog button");
-
-        showButton.addEventListener("click", () => {
-            dialog.showModal();
-        });
-
-        closeButton.addEventListener("click", () => {
-            dialog.close();
-        });
-    </script>
+    @include('scripts.scripts')
 @endsection

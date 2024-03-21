@@ -1,5 +1,6 @@
 @extends('helpers.header')
 @section('content')
+    <body>
     @if($editing ?? false)
         <div class="bg-modal">
             <div class="modal-content">
@@ -31,25 +32,7 @@
             </div>
         </div>
     @else
-        <body>
-        <div class="boxTask">
-            <div class="task">
-                <p>{{ $task->name }}</p>
-                <p>{{ $task->status }}</p>
-                <p>{{ $task->effort }}</p>
-                <p>{{ $task->priority }}</p>
-                <p>{{ $task->timeEst }}</p>
-                <p>{{ $task->description }}</p>
-                <div>
-                    <form method="post" action="{{ route('tasks.destroy', $task->id) }}" onsubmit="return confirm('Are you sure?');">
-                        @csrf
-                        @method('delete')
-                        <a href="{{ route('tasks.edit', $task->id) }}">Edit</a>
-                        <button class="delete" type="submit">+</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        </body>
+        @include('includes.one-task')
     @endif
+    </body>
 @endsection
