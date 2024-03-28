@@ -37,4 +37,26 @@ class UserProjectController extends Controller
             return redirect()->route('projects.index')->with('error', "User is not member of project or Invalid name");
         }
     }
+
+    public function removeMe(Project $project)
+    {
+        $user = Auth::user();
+
+        if ($user && $project->isProjectMember($user)) {
+            $project->users()->detach($user->id);
+            return redirect()->route('projects.index');
+        } else {
+            return redirect()->route('projects.index')->with('error', "User is not member of project or Invalid name");
+        }
+    }
+
+    public function show(Project $project)
+    {
+        $users = User::all();
+        return view('includes.all-project-users', [
+            'usersProject' => $project->showProjectMember($project),
+            'projects' => $project,
+            'users' => $users
+        ]);
+    }
 }

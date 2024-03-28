@@ -1,6 +1,6 @@
 <div id="myModal" class="modal">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content2">
             <button type="button" class="close" data-dismiss="modal" onclick="closeModal()">+</button>
             <div class="modal-body">
                 <form action="{{ route('user.add', $project->id) }}" method="post">

@@ -29,6 +29,10 @@ Route::get('profile', [UserController::class, 'profile'])->name('profile')->midd
 
 Route::resource('projects', ProjectController::class)->middleware('auth');
 
-Route::post('users/{project}/add', [UserProjectController::class, 'add'])->name('user.add')->middleware('auth');
+Route::post('user/{project}/add', [UserProjectController::class, 'add'])->name('user.add')->middleware('auth');
 
-Route::post('users/{project}/remove', [UserProjectController::class, 'remove'])->name('user.remove')->middleware('auth');
+Route::post('user/{project}/remove', [UserProjectController::class, 'remove'])->name('user.remove')->middleware('auth');
+
+Route::get('user/{project}/show', [UserProjectController::class, 'show'])->name('user.show')->middleware('auth');
+
+Route::post('user/{project}/remove/auth', [UserProjectController::class, 'removeMe'])->name('user.removeMe')->middleware('auth');

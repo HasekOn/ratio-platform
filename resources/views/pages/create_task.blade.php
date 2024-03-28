@@ -1,6 +1,6 @@
 <dialog class="dialog">
     <div class="bg-modal">
-        <div class="modal-content">
+        <div class="modal-content2">
             <div class="close" id="close">
                 <button autofocus>+</button>
             </div>

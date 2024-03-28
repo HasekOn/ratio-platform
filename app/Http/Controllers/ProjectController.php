@@ -10,7 +10,12 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::latest()->get();
+        $user = Auth::user();
+        $projects = Project::where('creator_id', $user->id)
+            ->orWhereHas('users', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->latest()->get();
+
         return view('pages.project', [
             'projects' => $projects
         ]);

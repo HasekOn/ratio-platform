@@ -2,13 +2,15 @@
 
 @section('content')
     <body>
+    @include('pages.create_project')
+    <button class="createBtnP">Vytvořit nový projekt</button>
+
     @forelse($projects as $project)
         @include('includes.project-card')
     @empty
-        <p>No Projects Found</p>
+        <p>No projects found</p>
     @endforelse
-    @include('pages.create_project')
-    <button>Create new project</button>
     </body>
+
     @include('scripts.scripts')
 @endsection
