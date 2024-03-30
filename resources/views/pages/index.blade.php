@@ -22,7 +22,7 @@
             @forelse($tasks as $task)
                 @include('includes.task-card')
             @empty
-                <p>No Results Found</p>
+                <p>No Tasks Found</p>
             @endforelse
         </div>
         {{--
