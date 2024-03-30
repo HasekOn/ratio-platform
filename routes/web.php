@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -36,3 +37,5 @@ Route::post('user/{project}/remove', [UserProjectController::class, 'remove'])->
 Route::get('user/{project}/show', [UserProjectController::class, 'show'])->name('user.show')->middleware('auth');
 
 Route::post('user/{project}/remove/auth', [UserProjectController::class, 'removeMe'])->name('user.removeMe')->middleware('auth');
+
+Route::post('tasks/{task}/comments', [CommentController::class, 'store'])->name('tasks.comments.store')->middleware('auth');

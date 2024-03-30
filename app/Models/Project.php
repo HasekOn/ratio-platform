@@ -33,7 +33,7 @@ class Project extends Model
         return $this->users()->where('user_id', $user->id)->exists();
     }
 
-    public function showProjectMember(Project $project)
+    public function showProjectToMember(Project $project)
     {
         return User::whereHas('projects', function ($query) use ($project) {
             $query->where('project_id', $project->id);

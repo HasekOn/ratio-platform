@@ -4,7 +4,7 @@
             <div class="close" id="close">
                 <button autofocus>+</button>
             </div>
-            <p>New Task</p>
+            <p class="loginText">Create Task</p>
             <form action="{{ route('tasks.store') }}" method="post">
                 @csrf
                 <div class="name"><input name="name" type="text" placeholder="Name"></div>

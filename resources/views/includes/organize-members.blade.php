@@ -2,26 +2,27 @@
     <div class="modal-dialog">
         <div class="modal-content2">
             <button type="button" class="close" data-dismiss="modal" onclick="closeModal()">+</button>
+            <p class="loginText">Add or Remove project members</p>
+            <label class="loginText">Add members:</label><br>
             <div class="modal-body">
                 <form action="{{ route('user.add', $project->id) }}" method="post">
                     @csrf
-                    <p>Add member</p>
                     <input name="name" type="text" placeholder="Name">
                     @error('name')
                     <span> {{ "[" . $message . "]" }}</span>
                     @enderror
-                    <button type="submit">Add</button>
+                    <button class="createBtn" type="submit">Add</button>
                 </form>
             </div>
+            <label class="loginText">Remove members:</label><br>
             <div class="modal-body">
                 <form action="{{ route('user.remove', $project->id) }}" method="post">
                     @csrf
-                    <p>Remove member</p>
                     <input name="name" type="text" placeholder="Name">
                     @error('name')
                     <span> {{ "[" . $message . "]" }}</span>
                     @enderror
-                    <button type="submit">Remove</button>
+                    <button class="createBtn" type="submit">Remove</button>
                 </form>
             </div>
         </div>

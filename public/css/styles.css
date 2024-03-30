@@ -103,6 +103,13 @@ ul li:hover {
     cursor: pointer;
 }
 
+.singleTask{
+    font-size: 18px;
+    box-shadow: 0 0 2px #971ad5;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
 div span {
     font-size: 12px;
     color: red;

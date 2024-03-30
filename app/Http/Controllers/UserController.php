@@ -13,9 +13,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-
+        $projects = $user->project;
+        $joinedProjects = $user->showProjectToMember($user);
         $tasks = $user->tasks()->latest()->paginate();
-        return view('users.user-show', compact('user', 'tasks'));
+        return view('users.user-show', compact('user', 'tasks', 'projects', 'joinedProjects'));
     }
 
     /**

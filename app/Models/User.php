@@ -63,4 +63,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Project::class, 'user_project', 'user_id', 'project_id')->withTimestamps();
     }
+
+    public function project()
+    {
+        return $this->hasMany(Project::class, 'creator_id');
+    }
+
+    public function showProjectToMember(User $user)
+    {
+        return User::whereHas('projects', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->get();
+    }
 }

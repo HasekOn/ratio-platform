@@ -44,11 +44,26 @@
             <br>
             <span>Bio: {{ $user->bio }}</span>
             <hr>
+                @if(Auth::id() === $user->id)
+                    My Projects:
+                    @forelse($projects as $project)
+                        @include('includes.project-card')
+                    @empty
+                        <p>You have not created projects yet</p>
+                    @endforelse
+                    Joined Projects:
+                    @forelse($joinedProjects as $project)
+                        @include('includes.project-card')
+                    @empty
+                        <p>You have not joined projects yet</p>
+                    @endforelse
+        @endif
             @if(Auth::id() === $user->id)
+                Tasks:
                 @forelse($tasks as $task)
                     @include('includes.task-card')
                 @empty
-                    <p>No Results Found</p>
+                    <p>No tasks Found</p>
                 @endforelse
             @endif
         @endif

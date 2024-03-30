@@ -1,5 +1,6 @@
+<div class="box">
 <div class="boxTask">
-    <div class="task">
+    <div class="singleTask">
         <p>{{ $task->name }}</p>
         <p>{{ $task->status }}</p>
         <p>{{ $task->effort }}</p>
@@ -16,4 +17,25 @@
             </form>
         </div>
     </div>
+</div>
+
+<div class="boxTask">
+    @forelse($task->comments as $comment)
+        {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }} -
+        {{ $comment->content }}
+        | {{ \Carbon\Carbon::parse($comment->created_at)->format('M-d') }} |
+        <br>
+        @empty
+            <p>No comment found</p>
+    @endforelse
+    <div class="singleTask">
+        <div>
+            <form method="post" action="{{ route('tasks.comments.store', $task->id) }}">
+                @csrf
+                <textarea rows="1" name="content"></textarea>
+                <button class="loginText" type="submit">Post comment</button>
+            </form>
+        </div>
+    </div>
+</div>
 </div>

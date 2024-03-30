@@ -54,7 +54,7 @@ class UserProjectController extends Controller
     {
         $users = User::all();
         return view('includes.all-project-users', [
-            'usersProject' => $project->showProjectMember($project),
+            'usersProject' => $project->showProjectToMember($project),
             'projects' => $project,
             'users' => $users
         ]);
