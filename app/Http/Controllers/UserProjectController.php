@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class UserProjectController extends Controller
 {
 
-    public function add(Project $project)
+    public function store(Project $project)
     {
         $userName = \request()->get('name');
 
@@ -24,23 +24,11 @@ class UserProjectController extends Controller
         }
     }
 
-    public function remove(Project $project)
+    public function destroy(Project $project)
     {
         $userName = \request()->get('name');
 
         $user = User::where('name', $userName)->first();
-
-        if ($user && $project->isProjectMember($user)) {
-            $project->users()->detach($user->id);
-            return redirect()->route('projects.index');
-        } else {
-            return redirect()->route('projects.index')->with('error', "User is not member of project or Invalid name");
-        }
-    }
-
-    public function removeMe(Project $project)
-    {
-        $user = Auth::user();
 
         if ($user && $project->isProjectMember($user)) {
             $project->users()->detach($user->id);
@@ -58,5 +46,17 @@ class UserProjectController extends Controller
             'projects' => $project,
             'users' => $users
         ]);
+    }
+
+    public function removeMe(Project $project)
+    {
+        $user = Auth::user();
+
+        if ($user && $project->isProjectMember($user)) {
+            $project->users()->detach($user->id);
+            return redirect()->route('projects.index');
+        } else {
+            return redirect()->route('projects.index')->with('error', "User is not member of project or Invalid name");
+        }
     }
 }

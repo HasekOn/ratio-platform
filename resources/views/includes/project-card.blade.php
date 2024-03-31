@@ -18,9 +18,10 @@
             @include('scripts.scripts')
             @include('alerts.invalid-name')
         @endif
-        <a href="{{ route('user.show', $project->id) }}" class="submit">Show members</a>
+        <a href="{{ route('userProject.show', $project->id) }}" class="submit">Show members</a>
         @if( $project->creator_id !== Auth::user()->id)
-            <form action="{{ route('user.removeMe', $project->id) }}" method="post">
+            <form action="{{ route('user.removeMe', $project->id) }}" method="post"
+                  onsubmit="return confirm('Are you sure?');">
                 @csrf
                 <button type="submit">Remove me from Project</button>
             </form>

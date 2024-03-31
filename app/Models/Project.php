@@ -39,4 +39,9 @@ class Project extends Model
             $query->where('project_id', $project->id);
         })->get();
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(ProjectTask::class);
+    }
 }

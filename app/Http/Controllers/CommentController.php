@@ -12,7 +12,9 @@ class CommentController extends Controller
     {
         $validated = $this->validation(\request());
         $validated['task_id'] = $task->id;
-        Comment::create($validated); return redirect()->route('tasks.show', $task->id);
+        Comment::create($validated);
+
+        return redirect()->route('tasks.show', $task->id);
     }
 
     public function validation(Request $request)

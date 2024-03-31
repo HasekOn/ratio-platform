@@ -76,7 +76,7 @@ ul li:hover {
 
 .taskMenu {
     display: flex;
-    width: 15%;
+    width: 10%;
     height: 30rem;
     justify-content: space-around;
     flex-direction: column;

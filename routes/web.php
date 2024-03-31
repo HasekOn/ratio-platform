@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectTaskController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProjectController;
@@ -30,12 +31,14 @@ Route::get('profile', [UserController::class, 'profile'])->name('profile')->midd
 
 Route::resource('projects', ProjectController::class)->middleware('auth');
 
-Route::post('user/{project}/add', [UserProjectController::class, 'add'])->name('user.add')->middleware('auth');
+Route::resource('userProject', UserProjectController::class)->only('show', 'store', 'destroy')
+    ->middleware('auth');
 
-Route::post('user/{project}/remove', [UserProjectController::class, 'remove'])->name('user.remove')->middleware('auth');
+Route::post('user/{project}/remove/auth', [UserProjectController::class, 'removeMe'])->name('user.removeMe')
+    ->middleware('auth');
 
-Route::get('user/{project}/show', [UserProjectController::class, 'show'])->name('user.show')->middleware('auth');
+Route::post('tasks/{task}/comments', [CommentController::class, 'store'])->name('tasks.comments.store')
+    ->middleware('auth');
 
-Route::post('user/{project}/remove/auth', [UserProjectController::class, 'removeMe'])->name('user.removeMe')->middleware('auth');
-
-Route::post('tasks/{task}/comments', [CommentController::class, 'store'])->name('tasks.comments.store')->middleware('auth');
+Route::post('project/{project}/task', [ProjectTaskController::class, 'store'])->name('project.task.store')
+    ->middleware('auth');

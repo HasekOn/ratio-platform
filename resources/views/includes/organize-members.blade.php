@@ -5,7 +5,7 @@
             <p class="loginText">Add or Remove project members</p>
             <label class="loginText">Add members:</label><br>
             <div class="modal-body">
-                <form action="{{ route('user.add', $project->id) }}" method="post">
+                <form action="{{ route('userProject.store', $project->id) }}" method="post">
                     @csrf
                     <input name="name" type="text" placeholder="Name">
                     @error('name')
@@ -16,7 +16,7 @@
             </div>
             <label class="loginText">Remove members:</label><br>
             <div class="modal-body">
-                <form action="{{ route('user.remove', $project->id) }}" method="post">
+                <form action="{{ route('userProject.destroy', $project->id) }}" method="post">
                     @csrf
                     <input name="name" type="text" placeholder="Name">
                     @error('name')
