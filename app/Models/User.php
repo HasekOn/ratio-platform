@@ -4,6 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -46,12 +49,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function tasks()
+    public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
     }
 
-    public function getImageURL()
+    public function getImageURL(): \Illuminate\Foundation\Application|string|\Illuminate\Contracts\Routing\UrlGenerator|\Illuminate\Contracts\Foundation\Application
     {
         if ($this->image) {
             return url('storage/' . $this->image);
@@ -59,17 +62,21 @@ class User extends Authenticatable
         return 'https://ui-avatars.com/api/?name=' . $this->name;
     }
 
-    public function projects()
+    public function projects(): BelongsToMany
     {
         return $this->belongsToMany(Project::class, 'user_project', 'user_id', 'project_id')->withTimestamps();
     }
 
-    public function project()
+    public function project(): HasMany
     {
         return $this->hasMany(Project::class, 'creator_id');
     }
 
-    public function showProjectToMember(User $user)
+    /**
+     * @param User $user
+     * @return User
+     */
+    public function showProjectToMember(User $user): User
     {
         return User::whereHas('projects', function ($query) use ($user) {
             $query->where('user_id', $user->id);

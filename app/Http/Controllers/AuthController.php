@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\WelcomeEmail;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -15,7 +16,10 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function store()
+    /**
+     * @return RedirectResponse
+     */
+    public function store(): RedirectResponse
     {
         $validated = \request()->validate([
             'name' => 'required|min:3|max:40',
@@ -40,7 +44,10 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function authenticate()
+    /**
+     * @return RedirectResponse
+     */
+    public function authenticate(): RedirectResponse
     {
         $validated = \request()->validate([
             'email' => 'required|email',
@@ -57,7 +64,10 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout()
+    /**
+     * @return RedirectResponse
+     */
+    public function logout(): RedirectResponse
     {
         auth()->logout();
         \request()->session()->invalidate();

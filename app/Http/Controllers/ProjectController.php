@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,10 @@ class ProjectController extends Controller
         return view('pages.project-show', compact('project'));
     }
 
-    public function store()
+    /**
+     * @return RedirectResponse
+     */
+    public function store(): RedirectResponse
     {
         $validated = $this->validation(\request());
         $validated['creator_id'] = auth()->id();
@@ -35,7 +39,11 @@ class ProjectController extends Controller
         return redirect()->route('projects.index');
     }
 
-    public function destroy(Project $project)
+    /**
+     * @param Project $project
+     * @return RedirectResponse
+     */
+    public function destroy(Project $project): RedirectResponse
     {
         $project->delete();
 
@@ -47,7 +55,11 @@ class ProjectController extends Controller
         return view('includes.project-edit', compact('project'));
     }
 
-    public function update(Project $project)
+    /**
+     * @param Project $project
+     * @return RedirectResponse
+     */
+    public function update(Project $project): RedirectResponse
     {
         $validated = $this->validation(\request());
         $validated['creator_id'] = auth()->id();
@@ -56,7 +68,11 @@ class ProjectController extends Controller
         return redirect()->route('projects.index');
     }
 
-    public function validation(Request $request)
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function validation(Request $request): array
     {
         return $request->validate([
             'name' => 'required|max:50',

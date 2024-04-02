@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -17,7 +18,10 @@ class TaskController extends Controller
         return view('pages.task-show', compact('task'));
     }
 
-    public function store()
+    /**
+     * @return RedirectResponse
+     */
+    public function store(): RedirectResponse
     {
         $validated = $this->validation(\request());
         $validated['user_id'] = auth()->id();
@@ -26,7 +30,11 @@ class TaskController extends Controller
         return redirect()->route('ratio.home');
     }
 
-    public function destroy(Task $task)
+    /**
+     * @param Task $task
+     * @return RedirectResponse
+     */
+    public function destroy(Task $task): RedirectResponse
     {
         $task->delete();
 
@@ -39,7 +47,11 @@ class TaskController extends Controller
         return view('pages.task-show', compact('task', 'editing'));
     }
 
-    public function update(Task $task)
+    /**
+     * @param Task $task
+     * @return RedirectResponse
+     */
+    public function update(Task $task): RedirectResponse
     {
         $validated = $this->validation(\request());
         $validated['user_id'] = auth()->id();
@@ -48,7 +60,11 @@ class TaskController extends Controller
         return redirect()->route('tasks.show', $task['id']);
     }
 
-    public function validation(Request $request)
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function validation(Request $request): array
     {
         return $request->validate([
             'name' => 'required|max:50',

@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\ProjectTask;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ProjectTaskController extends Controller
 {
-    public function store(Project $project)
+
+    /**
+     * @param Project $project
+     * @return RedirectResponse
+     */
+    public function store(Project $project): RedirectResponse
     {
         $validated = $this->validation(\request());
         $validated['project_id'] = $project->id;
@@ -17,7 +23,12 @@ class ProjectTaskController extends Controller
 
         return redirect()->route('projects.show', $project->id);
     }
-    public function validation(Request $request)
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function validation(Request $request): array
     {
         return $request->validate([
             'name' => 'required|max:50',

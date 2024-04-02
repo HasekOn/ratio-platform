@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
 class Project extends Model
@@ -18,29 +21,46 @@ class Project extends Model
         'description',
     ];
 
-    public function user()
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function users()
+    /**
+     * @return BelongsToMany
+     */
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_project', 'project_id', 'user_id')->withTimestamps();
     }
 
-    public function isProjectMember(User $user)
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function isProjectMember(User $user): bool
     {
         return $this->users()->where('user_id', $user->id)->exists();
     }
 
-    public function showProjectToMember(Project $project)
+    /**
+     * @param Project $project
+     * @return User
+     */
+    public function showProjectToMember(Project $project): User
     {
         return User::whereHas('projects', function ($query) use ($project) {
             $query->where('project_id', $project->id);
         })->get();
     }
 
-    public function tasks()
+    /**
+     * @return HasMany
+     */
+    public function tasks(): HasMany
     {
         return $this->hasMany(ProjectTask::class);
     }

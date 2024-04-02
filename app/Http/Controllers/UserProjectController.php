@@ -4,13 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class UserProjectController extends Controller
 {
 
-    public function store(Project $project)
+    /**
+     * @param Project $project
+     * @return RedirectResponse
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function store(Project $project): RedirectResponse
     {
         $userName = \request()->get('email');
 
@@ -24,7 +33,13 @@ class UserProjectController extends Controller
         }
     }
 
-    public function destroy(Project $project)
+    /**
+     * @param Project $project
+     * @return RedirectResponse
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function destroy(Project $project): RedirectResponse
     {
         $userName = \request()->get('email');
 
@@ -48,7 +63,11 @@ class UserProjectController extends Controller
         ]);
     }
 
-    public function removeMe(Project $project)
+    /**
+     * @param Project $project
+     * @return RedirectResponse
+     */
+    public function removeMe(Project $project): RedirectResponse
     {
         $user = Auth::user();
 

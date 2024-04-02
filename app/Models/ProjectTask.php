@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProjectTask extends Model
 {
@@ -20,17 +21,27 @@ class ProjectTask extends Model
         'description',
     ];
 
-    public function project()
+    /**
+     * @return BelongsTo
+     */
+    public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
     }
 
-    public function user()
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function getUserNameById(int $userId)
+    /**
+     * @param int $userId
+     * @return User|null
+     */
+    public function getUserNameById(int $userId): User|null
     {
         $user = User::find($userId);
         if ($user) {

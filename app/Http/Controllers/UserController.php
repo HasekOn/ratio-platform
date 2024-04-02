@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,9 +31,10 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param User $user
+     * @return RedirectResponse
      */
-    public function update(User $user)
+    public function update(User $user): RedirectResponse
     {
         $validated = \request()->validate([
             'name' => 'required|min:3|max:40',
