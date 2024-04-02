@@ -16,7 +16,7 @@
                 </form>
             </div>
             @forelse($project->tasks as $task)
-                @include('includes.task-card')
+                @include('includes.projectTask-card')
             @empty
                 <p>No Tasks Found</p>
             @endforelse

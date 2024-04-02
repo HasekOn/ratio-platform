@@ -29,4 +29,14 @@ class ProjectTask extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getUserNameById(int $userId)
+    {
+        $user = User::find($userId);
+        if ($user) {
+            return $user->name;
+        } else {
+            return null;
+        }
+    }
 }

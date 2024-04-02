@@ -22,23 +22,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [YourWorkController::class, 'index'])->name('ratio.home')->middleware('auth');
 
+Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
+
 Route::resource('tasks', TaskController::class)->middleware('auth');
 
-Route::resource('users', UserController::class)->only('show', 'edit', 'update')
-    ->middleware('auth');
-
-Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
+Route::resource('users', UserController::class)->only(['show', 'edit', 'update'])->middleware('auth');
 
 Route::resource('projects', ProjectController::class)->middleware('auth');
 
-Route::resource('userProject', UserProjectController::class)->only('show', 'store', 'destroy')
-    ->middleware('auth');
+Route::resource('tasks.comments', CommentController::class)->only(['store'])->middleware('auth');
 
-Route::post('user/{project}/remove/auth', [UserProjectController::class, 'removeMe'])->name('user.removeMe')
-    ->middleware('auth');
+Route::resource('projects.tasks', ProjectTaskController::class)->only(['store'])->middleware('auth');
 
-Route::post('tasks/{task}/comments', [CommentController::class, 'store'])->name('tasks.comments.store')
-    ->middleware('auth');
-
-Route::post('project/{project}/task', [ProjectTaskController::class, 'store'])->name('project.task.store')
-    ->middleware('auth');
+Route::group(['prefix' => 'projectUser/{project}/', 'as' => 'projectUsers.', 'middleware' => 'auth'], function () {
+    Route::get('show', [UserProjectController::class, 'show'])->name('show');
+    Route::post('store', [UserProjectController::class, 'store'])->name('store');
+    Route::post('remove', [UserProjectController::class, 'destroy'])->name('destroy');
+    Route::post('removeMe', [UserProjectController::class, 'removeMe'])->name('removeMe');
+});

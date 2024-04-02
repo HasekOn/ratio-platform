@@ -5,7 +5,7 @@
                 <button autofocus>+</button>
             </div>
             <p class="loginText">Create Task</p>
-            <form action="{{ route('project.task.store', $project->id) }}" method="post">
+            <form action="{{ route('projects.tasks.store', $project->id) }}" method="post">
                 @csrf
                 <div class="name"><input name="name" type="text" placeholder="Name"></div>
                 @error('name')
@@ -25,7 +25,7 @@
                 @error('description')
                 <span> {{ "[" . $message . "]" }}</span>
                 @enderror
-                <button class="createBtn">Create</button>
+                <button class="createBtn" type="submit">Create</button>
             </form>
         </div>
     </div>

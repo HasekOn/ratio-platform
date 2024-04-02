@@ -12,9 +12,9 @@ class UserProjectController extends Controller
 
     public function store(Project $project)
     {
-        $userName = \request()->get('name');
+        $userName = \request()->get('email');
 
-        $user = User::where('name', $userName)->first();
+        $user = User::where('email', $userName)->first();
 
         if ($user && !$project->isProjectMember($user)) {
             $project->users()->attach($user->id);
@@ -26,9 +26,9 @@ class UserProjectController extends Controller
 
     public function destroy(Project $project)
     {
-        $userName = \request()->get('name');
+        $userName = \request()->get('email');
 
-        $user = User::where('name', $userName)->first();
+        $user = User::where('email', $userName)->first();
 
         if ($user && $project->isProjectMember($user)) {
             $project->users()->detach($user->id);
