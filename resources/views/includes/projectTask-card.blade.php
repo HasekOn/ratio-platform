@@ -1,4 +1,4 @@
-<a href="{{ route('tasks.show', $task->id) }}">
+<a href="{{ route('projectTasks.show', $task->id) }}">
     <div class="task">
         <p>{{ $task->name }}</p>
         <p>{{ $task->status }}</p>

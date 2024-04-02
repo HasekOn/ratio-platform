@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectTaskCommentController;
 use App\Http\Controllers\ProjectTaskController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -32,7 +33,14 @@ Route::resource('projects', ProjectController::class)->middleware('auth');
 
 Route::resource('tasks.comments', CommentController::class)->only(['store'])->middleware('auth');
 
+Route::resource('projectTasks.comments', ProjectTaskCommentController::class)->only(['store'])
+    ->middleware('auth');
+
 Route::resource('projects.tasks', ProjectTaskController::class)->only(['store'])->middleware('auth');
+
+Route::resource('projectTasks', ProjectTaskController::class)
+    ->except(['store', 'index', 'create'])
+    ->middleware('auth');
 
 Route::group(['prefix' => 'projectUser/{project}/', 'as' => 'projectUsers.', 'middleware' => 'auth'], function () {
     Route::get('show', [UserProjectController::class, 'show'])->name('show');

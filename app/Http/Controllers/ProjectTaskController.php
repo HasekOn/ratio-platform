@@ -10,6 +10,31 @@ use Illuminate\Http\Request;
 class ProjectTaskController extends Controller
 {
 
+    public function show(ProjectTask $projectTask)
+    {
+        return view('pages.projectTask-show', compact('projectTask'));
+    }
+
+    public function edit(ProjectTask $projectTask)
+    {
+        $editing = true;
+        return view('pages.projectTask-show', compact('projectTask', 'editing'));
+    }
+
+    /**
+     * @param ProjectTask $projectTask
+     * @return RedirectResponse
+     */
+    public function update(ProjectTask $projectTask): RedirectResponse
+    {
+        $validated = $this->validation(\request());
+        $validated['project_id'] = $projectTask->project_id;
+        $validated['user_id'] = $projectTask->user_id;
+        $projectTask->update($validated);
+
+        return redirect()->route('projectTasks.show', $projectTask['id']);
+    }
+
     /**
      * @param Project $project
      * @return RedirectResponse
@@ -22,6 +47,17 @@ class ProjectTaskController extends Controller
         ProjectTask::create($validated);
 
         return redirect()->route('projects.show', $project->id);
+    }
+
+    /**
+     * @param ProjectTask $projectTask
+     * @return RedirectResponse
+     */
+    public function destroy(ProjectTask $projectTask): RedirectResponse
+    {
+        $projectTask->delete();
+
+        return redirect()->route('projectTasks.show', $projectTask['id']);
     }
 
     /**

@@ -48,9 +48,9 @@ class Project extends Model
 
     /**
      * @param Project $project
-     * @return User
+     * @return mixed
      */
-    public function showProjectToMember(Project $project): User
+    public function showProjectToMember(Project $project): mixed
     {
         return User::whereHas('projects', function ($query) use ($project) {
             $query->where('project_id', $project->id);
