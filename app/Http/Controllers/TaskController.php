@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Task\CreateTaskRequest;
+use App\Http\Requests\Task\UpdateTaskRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\Task;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -15,15 +18,18 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
+        $this->authorize('view', $task);
         return view('pages.task-show', compact('task'));
     }
 
     /**
+     * @param CreateTaskRequest $request
      * @return RedirectResponse
      */
-    public function store(): RedirectResponse
+    public function store(CreateTaskRequest $request): RedirectResponse
     {
-        $validated = $this->validation(\request());
+        $validated = $request->validated();
+
         $validated['user_id'] = auth()->id();
         Task::create($validated);
 
@@ -31,29 +37,16 @@ class TaskController extends Controller
     }
 
     /**
+     * @param UpdateTaskRequest $request
      * @param Task $task
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
-    public function destroy(Task $task): RedirectResponse
+    public function update(UpdateTaskRequest $request, Task $task): RedirectResponse
     {
-        $task->delete();
+        $this->authorize('update', $task);
 
-        return redirect()->route('ratio.home');
-    }
-
-    public function edit(Task $task)
-    {
-        $editing = true;
-        return view('pages.task-show', compact('task', 'editing'));
-    }
-
-    /**
-     * @param Task $task
-     * @return RedirectResponse
-     */
-    public function update(Task $task): RedirectResponse
-    {
-        $validated = $this->validation(\request());
+        $validated = $request->validated();
         $validated['user_id'] = auth()->id();
         $task->update($validated);
 
@@ -61,18 +54,29 @@ class TaskController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return array
+     * @param Task $task
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
-    public function validation(Request $request): array
+    public function destroy(Task $task): RedirectResponse
     {
-        return $request->validate([
-            'name' => 'required|max:50',
-            'description' => 'max:500',
-            'timeEst' => 'nullable|after_or_equal:today',
-            'status' => 'nullable',
-            'effort' => 'nullable',
-            'priority' => 'nullable',
-        ]);
+
+        $this->authorize('delete', $task);
+
+        $task->delete();
+
+        return redirect()->route('ratio.home');
+    }
+
+    /**
+     * @param Task $task
+     * @throws AuthorizationException
+     */
+    public function edit(Task $task)
+    {
+        $this->authorize('update', $task);
+
+        $editing = true;
+        return view('pages.task-show', compact('task', 'editing'));
     }
 }

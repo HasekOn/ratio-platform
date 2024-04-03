@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -25,25 +26,26 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         $editing = true;
         $tasks = $user->tasks()->paginate();
         return view('users.user-show', compact('user', 'editing', 'tasks'));
     }
 
     /**
+     * @param UpdateUserRequest $request
      * @param User $user
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
-    public function update(User $user): RedirectResponse
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $validated = \request()->validate([
-            'name' => 'required|min:3|max:40',
-            'bio' => 'nullable|max:255',
-            'image' => 'image'
-        ]);
+        $this->authorize('update', $user);
 
-        if (\request()->has('image')) {
-            $imagePath = \request()->file('image')->store('profile', 'public');
+        $validated = $request->validated();
+
+        if ($request->has('image')) {
+            $imagePath = $request->file('image')->store('profile', 'public');
             $validated['image'] = $imagePath;
             Storage::disk('public')->delete($user->image ?? '');
         }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectTask\CreateProjectTaskRequest;
+use App\Http\Requests\ProjectTask\UpdateProjectTaskRequest;
 use App\Models\Project;
 use App\Models\ProjectTask;
 use Illuminate\Http\RedirectResponse;
@@ -22,12 +24,13 @@ class ProjectTaskController extends Controller
     }
 
     /**
+     * @param UpdateProjectTaskRequest $request
      * @param ProjectTask $projectTask
      * @return RedirectResponse
      */
-    public function update(ProjectTask $projectTask): RedirectResponse
+    public function update(UpdateProjectTaskRequest $request, ProjectTask $projectTask): RedirectResponse
     {
-        $validated = $this->validation(\request());
+        $validated = $request->validated();
         $validated['project_id'] = $projectTask->project_id;
         $validated['user_id'] = $projectTask->user_id;
         $projectTask->update($validated);
@@ -36,12 +39,13 @@ class ProjectTaskController extends Controller
     }
 
     /**
+     * @param CreateProjectTaskRequest $request
      * @param Project $project
      * @return RedirectResponse
      */
-    public function store(Project $project): RedirectResponse
+    public function store(CreateProjectTaskRequest $request, Project $project): RedirectResponse
     {
-        $validated = $this->validation(\request());
+        $validated = $request->validated();
         $validated['project_id'] = $project->id;
         $validated['user_id'] = auth()->id();
         ProjectTask::create($validated);
@@ -57,22 +61,6 @@ class ProjectTaskController extends Controller
     {
         $projectTask->delete();
 
-        return redirect()->route('projectTasks.show', $projectTask['id']);
-    }
-
-    /**
-     * @param Request $request
-     * @return array
-     */
-    public function validation(Request $request): array
-    {
-        return $request->validate([
-            'name' => 'required|max:50',
-            'description' => 'max:500',
-            'timeEst' => 'nullable|after_or_equal:today',
-            'status' => 'nullable',
-            'effort' => 'nullable',
-            'priority' => 'nullable',
-        ]);
+        return redirect()->route('projects.show', $projectTask['project_id']);
     }
 }

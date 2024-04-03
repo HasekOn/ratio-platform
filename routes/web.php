@@ -21,26 +21,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [YourWorkController::class, 'index'])->name('ratio.home')->middleware('auth');
-
-Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
-
-Route::resource('tasks', TaskController::class)->middleware('auth');
-
-Route::resource('users', UserController::class)->only(['show', 'edit', 'update'])->middleware('auth');
-
-Route::resource('projects', ProjectController::class)->middleware('auth');
-
-Route::resource('tasks.comments', CommentController::class)->only(['store'])->middleware('auth');
-
-Route::resource('projectTasks.comments', ProjectTaskCommentController::class)->only(['store'])
-    ->middleware('auth');
-
-Route::resource('projects.tasks', ProjectTaskController::class)->only(['store'])->middleware('auth');
-
-Route::resource('projectTasks', ProjectTaskController::class)
-    ->except(['store', 'index', 'create'])
-    ->middleware('auth');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', [YourWorkController::class, 'index'])->name('ratio.home');
+    Route::get('profile', [UserController::class, 'profile'])->name('profile');
+    Route::resource('tasks', TaskController::class);
+    Route::resource('users', UserController::class)->only(['show', 'edit', 'update']);
+    Route::resource('projects', ProjectController::class);
+    Route::resource('tasks.comments', CommentController::class)->only(['store']);
+    Route::resource('projectTasks.comments', ProjectTaskCommentController::class)->only(['store']);
+    Route::resource('projects.tasks', ProjectTaskController::class)->only(['store']);
+    Route::resource('projectTasks', ProjectTaskController::class)->except(['store', 'index', 'create']);
+});
 
 Route::group(['prefix' => 'projectUser/{project}/', 'as' => 'projectUsers.', 'middleware' => 'auth'], function () {
     Route::get('show', [UserProjectController::class, 'show'])->name('show');

@@ -25,13 +25,6 @@
                 <p>No Tasks Found</p>
             @endforelse
         </div>
-        {{--
-        <div class="boxTaskInvisible">
-            <div class="square">
-                @include('includes.one-task')
-            </div>
-        </div>
-        --}}
     </div>
     </body>
 

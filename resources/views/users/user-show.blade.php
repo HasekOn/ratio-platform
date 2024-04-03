@@ -8,11 +8,9 @@
             <form action="{{ route('users.update', $user->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('put')
-                @auth()
-                    @if(Auth::id() === $user->id)
-                        <a href="{{ route('profile') }}">View</a>
-                    @endif
-                @endauth
+                @can('update', $user)
+                    <a href="{{ route('profile') }}">View</a>
+                @endcan
                 <p>Profile picture: </p>
                 <input name="image" class="editing" type="file">
                 @error('image')
@@ -31,11 +29,9 @@
                 <button>Save</button>
             </form>
         @else
-            @auth()
-                @if(Auth::id() === $user->id)
-                    <a href="{{ route('users.edit', $user->id) }}">Edit</a>
-                @endif
-            @endauth
+            @can('update', $user)
+                <a href="{{ route('users.edit', $user->id) }}">Edit</a>
+            @endcan
             <img src="{{ $user->getImageURL() }}" class="image">
             <br>
             <span>Username: {{ $user->name }}</span>
@@ -44,28 +40,28 @@
             <br>
             <span>Bio: {{ $user->bio }}</span>
             <hr>
-                @if(Auth::id() === $user->id)
-                    My Projects:
-                    @forelse($projects as $project)
-                        @include('includes.project-card')
-                    @empty
-                        <p>You have not created projects yet</p>
-                    @endforelse
-                    Joined Projects:
-                    @forelse($joinedProjects as $project)
-                        @include('includes.project-card')
-                    @empty
-                        <p>You have not joined projects yet</p>
-                    @endforelse
-        @endif
-            @if(Auth::id() === $user->id)
+            @can('update', $user)
+                My Projects:
+                @forelse($projects as $project)
+                    @include('includes.project-card')
+                @empty
+                    <p>You have not created projects yet</p>
+                @endforelse
+                Joined Projects:
+                @forelse($joinedProjects as $project)
+                    @include('includes.project-card')
+                @empty
+                    <p>You have not joined projects yet</p>
+                @endforelse
+            @endcan
+            @can('update', $user)
                 Tasks:
                 @forelse($tasks as $task)
                     @include('includes.task-card')
                 @empty
                     <p>No tasks Found</p>
                 @endforelse
-            @endif
+            @endcan
         @endif
     </div>
     </body>

@@ -11,21 +11,6 @@
         dialog.close();
     });
 
-    const box = document.querySelector(".boxTaskInvisible");
-    const buttons = document.querySelectorAll(".taskCard");
-
-    buttons.forEach((button, index) => {
-        button.addEventListener("click", () => {
-            buttons.forEach((otherButton, otherIndex) => {
-                if (otherIndex !== index) {
-                    box.classList.remove('active');
-                }
-            });
-
-            box.classList.toggle('active');
-        });
-    });
-
     function openModal() {
         document.getElementById("myModal").style.display = "block";
     }
