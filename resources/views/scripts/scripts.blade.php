@@ -12,10 +12,22 @@
     });
 
     function openModal() {
-        document.getElementById("myModal").style.display = "block";
+        document.getElementById("myModal").style.display = "flex";
     }
 
     function closeModal() {
         document.getElementById("myModal").style.display = "none";
     }
+
+    const menu = document.querySelector(".menu");
+    const menuContent = document.querySelector(".menuContent");
+    const closeBtn = document.querySelector(".closeBtn");
+
+    menu.addEventListener('click', () => {
+        menuContent.classList.add('active')
+    })
+
+    closeBtn.addEventListener('click', () => {
+        menuContent.classList.remove('active')
+    })
 </script>

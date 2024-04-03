@@ -59,8 +59,8 @@ class AuthController extends Controller
             return redirect()->route('ratio.home');
         }
 
-        return redirect()->route('login')->withErrors([
-            'email' => "No matching user found with the provited email and password"
+        return back()->withErrors([
+            'email' => "No matching user found with the provited email or wrong password"
         ]);
     }
 
