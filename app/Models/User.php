@@ -47,12 +47,15 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * @return HasMany
+     */
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
     }
 
-    public function getImageURL(): \Illuminate\Foundation\Application|string|\Illuminate\Contracts\Routing\UrlGenerator|\Illuminate\Contracts\Foundation\Application
+    public function getImageURL()
     {
         if ($this->image) {
             return url('storage/' . $this->image);
@@ -60,11 +63,17 @@ class User extends Authenticatable
         return 'https://ui-avatars.com/api/?name=' . $this->name;
     }
 
+    /**
+     * @return BelongsToMany
+     */
     public function projects(): BelongsToMany
     {
         return $this->belongsToMany(Project::class, 'user_project', 'user_id', 'project_id')->withTimestamps();
     }
 
+    /**
+     * @return HasMany
+     */
     public function project(): HasMany
     {
         return $this->hasMany(Project::class, 'creator_id');
