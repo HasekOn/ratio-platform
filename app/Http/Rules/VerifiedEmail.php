@@ -20,6 +20,6 @@ class VerifiedEmail implements Rule
 
     public function message()
     {
-        return 'The email address entered is not verified.';
+        return 'The email address is not verified.';
     }
 }

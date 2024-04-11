@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Invitation;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -18,11 +19,15 @@ class InvitationEmail extends Mailable
 
     /**
      * Create a new message instance.
+     * @param string $remember_token
+     * @param Invitation $invitation
+     * @param Project $project
      */
-    public function __construct(string $remember_token, Project $project)
+    public function __construct(string $remember_token, Invitation $invitation, Project $project)
     {
         $this->remember_token = $remember_token;
         $this->project = $project;
+        $this->invitation = $invitation;
     }
 
     /**
@@ -44,7 +49,8 @@ class InvitationEmail extends Mailable
             view: 'emails.invitation-email',
             with: [
                 'project' => $this->project,
-                'remember_token' => $this->remember_token
+                'remember_token' => $this->remember_token,
+                'invitation' => $this->invitation
             ]
         );
     }

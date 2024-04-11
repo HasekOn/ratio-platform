@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\InvitationEmail;
+use App\Models\Invitation;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -27,11 +28,16 @@ class UserProjectController extends Controller
         $userName = \request()->get('email');
 
         $user = User::where('email', $userName)->first();
-        $user->setRememberToken(Str::random(60));
-        $user->save();
 
         if ($user && !$project->isProjectMember($user) && $user->id!== $project->creator_id) {
-            Mail::to($userName)->send(new InvitationEmail($user->remember_token, $project));
+            $invitation = new Invitation();
+            $invitation->user_id = $user->id;
+            $invitation->project_id = $project->id;
+            $invitation->remember_token = Str::random(60);
+            $invitation->save();
+
+            Mail::to($userName)->send(new InvitationEmail($invitation->remember_token, $invitation, $project));
+
             return redirect()->route('projects.index');
         } else {
             return redirect()->route('projects.index')->with('error', "User is already member of project or Invalid username");
@@ -82,23 +88,5 @@ class UserProjectController extends Controller
         } else {
             return redirect()->route('projects.index')->with('error', "User is not member of project or Invalid name");
         }
-    }
-
-    /**
-     * @param string $remember_token
-     * @param User $user
-     * @param Project $project
-     * @return RedirectResponse
-     */
-    public function attachMemberToProject(string $remember_token, Project $project): RedirectResponse
-    {
-        if ($remember_token === Auth::user()->getRememberToken()){
-            if (!$project->isProjectMember(Auth::user()) && Auth::id() !== $project->creator_id){
-                $project->users()->attach(Auth::id());
-                Auth::user()->setRememberToken(null);
-                Auth::user()->save();
-            }
-        }
-        return redirect()->route('projects.index');
     }
 }

@@ -10,16 +10,17 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class WelcomeEmail extends Mailable
+class VerificationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(User $user)
+    public function __construct(string $remember_token, User $user)
     {
         $this->user = $user;
+        $this->remember_token = $remember_token;
     }
 
     /**
@@ -28,7 +29,7 @@ class WelcomeEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Thanks for joining ' . config('app.name', ''),
+            subject: 'Email verification',
         );
     }
 
@@ -38,9 +39,10 @@ class WelcomeEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.welcome-email',
+            view: 'emails.verification-email',
             with: [
-                'user' => $this->user
+                'user' => $this->user,
+                'remember_token' => $this->remember_token
             ]
         );
     }

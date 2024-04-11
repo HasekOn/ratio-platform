@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProjectController;
@@ -41,5 +42,5 @@ Route::group(['prefix' => 'projectUser/{project}/', 'as' => 'projectUsers.', 'mi
     Route::post('removeMe', [UserProjectController::class, 'removeMe'])->name('removeMe');
 });
 
-Route::get('/acceptInvitation/{remember_token}/{project}', [UserProjectController::class, 'attachMemberToProject'])
+Route::get('/acceptInvitation/{remember_token}/{invitation}/{project}', [InvitationController::class, 'attachMemberToProject'])
     ->name('attachMemberToProject');

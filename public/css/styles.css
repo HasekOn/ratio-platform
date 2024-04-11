@@ -146,10 +146,18 @@ ul li:hover {
 }
 
 .projectBox {
-    display: flex;
+    display: grid;
     width: 100%;
-    height: 100vh;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    place-items: center;
+}
+
+.projectBtn {
     padding-top: 50px;
+    padding-left: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .taskMenu {
@@ -178,6 +186,25 @@ ul li:hover {
     margin-top: 10px;
     margin-right: 10px;
     cursor: pointer;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.project {
+    font-size: 18px;
+    box-shadow: 0 0 2px #971ad5;
+    margin: 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 15px;
+    width: 300px;
+    height: max-content;
+    position: relative;
+    transition: all ease 300ms;
+}
+
+.project:hover {
+    box-shadow: 0 0 6px #971ad5;
 }
 
 .singleTask {
@@ -288,6 +315,53 @@ input {
     background-color: transparent;
     border: none;
     color: red;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+}
+
+.edit {
+    position: absolute;
+    top: 45px;
+    right: 15px;
+}
+
+.projectCardBtn {
+    background-color: transparent;
+    margin-top: 40px;
+    color: black;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+    transition: all ease 300ms;
+}
+
+.projectCardBtn:hover {
+    color: red;
+}
+
+.verifyBtn {
+    background-color: lightgreen;
+    width: max-content;
+    height: max-content;
+    margin-top: 20px;
+    color: black;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    transition: all ease 300ms;
+}
+
+.verifyBtn:hover {
+    background-color: #04c004;
+    color: white;
+}
+
+
+.ProjectForm {
+display: flex;
 }
 
 dialog {
@@ -307,16 +381,32 @@ dialog::backdrop {
 }
 
 .search {
-    display: block;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .searchBar {
     border: solid #1a202c;
+    width: 100%;
+}
+
+.searchBarProject {
+    border: solid #1a202c;
+    width: 35%;
+}
+
+.searchForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .searchButton {
+    margin: auto;
     height: 30px;
     width: 50px;
 }
@@ -338,6 +428,21 @@ dialog::backdrop {
     border: none;
     font-weight: bold;
     padding: 10px;
+}
+
+.createTaskBtn {
+    display: flex;
+    background-color: lightblue;
+    color: black;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    padding: 10px;
+    height: max-content;
+    width: max-content;
+    margin-bottom: 10px;
 }
 
 .editing {
@@ -412,6 +517,11 @@ dialog::backdrop {
     font-size: 20px;
 }
 
+.loginText:hover {
+    color: red;
+    transition: all ease 300ms;
+}
+
 .loginText-Create {
     color: white;
     font-size: 20px;
@@ -439,7 +549,7 @@ dialog::backdrop {
     width: 100%;
 }
 
-.verifyWrap{
+.verifyWrap {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -500,18 +610,30 @@ dialog::backdrop {
     color: red;
 }
 
+@media (max-width: 1500px) {
+    .projectBox {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: repeat(1, minmax(0, 1fr));
+    }
+}
+
 @media (max-width: 950px) {
-    .navMenu{
+    .navMenu {
         display: none;
     }
 
-    .header-right{
+    .header-right {
         width: 100%;
     }
 
     .menu {
         display: block;
         margin-left: 20px;
+    }
+
+    .projectBox {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(1, minmax(0, 1fr));
     }
 }
 
@@ -532,4 +654,12 @@ dialog::backdrop {
     .loginInput {
         width: 80%;
     }
+    .projectBox {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        grid-template-rows: repeat(1, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+
 }

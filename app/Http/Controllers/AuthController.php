@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\WelcomeEmail;
+use App\Http\Rules\VerifiedEmail;
+use App\Mail\VerificationEmail;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -16,10 +20,7 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    /**
-     * @return RedirectResponse
-     */
-    public function store(): RedirectResponse
+    public function store()
     {
         $validated = \request()->validate([
             'name' => 'required|min:3|max:40',
@@ -32,11 +33,13 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
+        $user->setRememberToken(Str::random(60));
+        $user->save();
 
-        Mail::to($user->email)->send(new WelcomeEmail($user));
-
-        \request()->session()->regenerate();
-        return redirect()->route('ratio.home');
+        Mail::to($user->email)->send(new VerificationEmail($user->remember_token, $user));
+        return view('emails.verify-email', [
+            'user' => $user
+        ]);
     }
 
     public function login()
@@ -50,11 +53,11 @@ class AuthController extends Controller
     public function authenticate(): RedirectResponse
     {
         $validated = \request()->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8'
+            'email' => ['required', 'email', new VerifiedEmail],
+            'password' => 'required|min:8',
         ]);
 
-        if (auth()->attempt($validated)) {
+        if (auth()->attempt($validated) && auth()->user()->hasVerifiedEmail()) {
             \request()->session()->regenerate();
             return redirect()->route('ratio.home');
         }
@@ -73,5 +76,43 @@ class AuthController extends Controller
         \request()->session()->invalidate();
         \request()->session()->regenerateToken();
         return redirect()->route('login');
+    }
+
+    /**
+     * @param string $remember_token
+     * @param User $user
+     * @return RedirectResponse
+     */
+    public function emailVerification(string $remember_token, User $user)
+    {
+        if ($remember_token === $user->getRememberToken()) {
+            $user->email_verified_at = CarbonImmutable::now();
+            $user->setRememberToken(null);
+            $user->save();
+            \request()->session()->regenerate();
+            return redirect()->route('ratio.home');
+        }
+        $this->logout();
+        return redirect()->route('login');
+    }
+
+    /**
+     * @param User $user
+     */
+    public function resendEmail(User $user)
+    {
+        if (!$user->hasVerifiedEmail()){
+
+            Mail::to($user->email)->send(new VerificationEmail($user->remember_token, $user));
+
+            return view('emails.verify-email', [
+                'user' => $user
+            ]);
+        } else {
+            auth()->logout();
+            \request()->session()->invalidate();
+            \request()->session()->regenerateToken();
+            return redirect()->route('login');
+        }
     }
 }
