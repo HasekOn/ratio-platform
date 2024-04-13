@@ -1,6 +1,6 @@
 <div class="box">
     <div class="boxTask">
-        <div class="singleTask">
+        <div class="task">
             <p>{{ $projectTask->name }}</p>
             <p>{{ $projectTask->status }}</p>
             <p>{{ $projectTask->effort }}</p>
@@ -14,7 +14,7 @@
                     @csrf
                     @method('delete')
                     <a href="{{ route('projectTasks.edit', $projectTask->id) }}">Edit</a>
-                    <button class="delete" type="submit">+</button>
+                    <button class="deleteTask" type="submit"><i class="fa-solid fa-trash"></i></button>
                 </form>
             </div>
         </div>

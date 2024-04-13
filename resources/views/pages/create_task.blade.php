@@ -10,7 +10,14 @@
             <span> {{ "[" . $message . "]" }}</span>
             @enderror
             <div class="attributes">
-                <input name="status" type="text" placeholder="Status...">
+                <select name="status">
+                    <option value="TO DO">TO DO</option>
+                    <option value="In PROGRESS">In PROGRESS</option>
+                    <option value="RETURNED">RETURNED</option>
+                    <option value="TO REVIEW">TO REVIEW</option>
+                    <option value="DONE">DONE</option>
+                    <option value="TO CANCEL">TO CANCEL</option>
+                </select>
                 <input name="effort" type="text" placeholder="Effort...">
                 <input name="priority" type="text" placeholder="Priority...">
                 <input name="timeEst" type="date" placeholder="Time Est...">

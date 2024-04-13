@@ -25,9 +25,9 @@ class InvitationController extends Controller
                 $project->save();
                 $invitation->remember_token = null;
                 $invitation->save();
-                return redirect()->route('projects.index')->with('successful', "Team join was successful");
+                return redirect()->route('projects.index')->with('success', "You have been successfully added to the team.");
             }
         }
-         return redirect()->route('ratio.home')->with('error', "You cant join team");
+         return redirect()->route('ratio.home')->with('error', "You cannot be added to the team.");
     }
 }

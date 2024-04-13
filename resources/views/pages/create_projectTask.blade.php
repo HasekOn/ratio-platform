@@ -1,9 +1,7 @@
 <dialog class="dialog">
-    <div class="bg-modal">
-        <div class="modal-content2">
-            <div class="close" id="close">
-                <button autofocus>+</button>
-            </div>
+    <div class="close" id="close">
+        <button>+</button>
+    </div>
             <p class="loginText">Create Task</p>
             <form action="{{ route('projects.tasks.store', $project->id) }}" method="post">
                 @csrf
@@ -25,8 +23,6 @@
                 @error('description')
                 <span> {{ "[" . $message . "]" }}</span>
                 @enderror
-                <button class="createBtn" type="submit">Create</button>
+                <button class="submit" type="submit">Create</button>
             </form>
-        </div>
-    </div>
 </dialog>

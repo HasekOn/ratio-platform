@@ -1,9 +1,12 @@
 @extends('helpers.header')
 
+@section('title', 'Projects')
 @section('content')
     <body>
     <div class="projectBtn">
         <div class="search">
+            @include('alerts.success')
+            @include('alerts.error')
             <h1 class="projectText">Projects</h1>
             <h2 class="projectText">Search</h2>
             <form action="{{ route('projects.index') }}" method="get" class="searchForm">

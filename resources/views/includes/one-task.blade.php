@@ -1,19 +1,19 @@
 <div class="box">
     <div class="boxTask">
-        <div class="singleTask">
-            <p>{{ $task->name }}</p>
-            <p>{{ $task->status }}</p>
-            <p>{{ $task->effort }}</p>
-            <p>{{ $task->priority }}</p>
-            <p>{{ $task->timeEst }}</p>
-            <p>{{ $task->description }}</p>
+        <div class="task">
+            <p>Name: {{ $task->name }}</p>
+            <p>Status: {{ $task->status }}</p>
+            <p>Effort: {{ $task->effort }}</p>
+            <p>Priority: {{ $task->priority }}</p>
+            <p>Complete by: {{ $task->timeEst }}</p>
+            <p>Description: {{ $task->description }}</p>
             <div>
                 <form method="post" action="{{ route('tasks.destroy', $task->id) }}"
                       onsubmit="return confirm('Are you sure?');">
                     @csrf
                     @method('delete')
                     <a href="{{ route('tasks.edit', $task->id) }}">Edit</a>
-                    <button class="delete" type="submit">+</button>
+                    <button class="deleteTask" type="submit"><i class="fa-solid fa-trash"></i></button>
                 </form>
             </div>
         </div>

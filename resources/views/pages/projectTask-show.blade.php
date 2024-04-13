@@ -1,4 +1,6 @@
 @extends('helpers.header')
+
+@section('title', 'Project task')
 @section('content')
     <body>
     @if($editing ?? false)

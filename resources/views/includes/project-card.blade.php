@@ -13,12 +13,11 @@
                 @csrf
                 @method('delete')
                 <a href="{{ route('projects.edit', $project->id) }}" class="edit"><i class="fa-solid fa-pencil"></i></a>
-                <button class="delete" type="submit">+</button>
+                <button class="delete" type="submit"><i class="fa-solid fa-trash"></i></button>
             </form>
             <button type="button" onclick="openModal()" class="projectCardBtn">Organize members</button>
             @include('includes.organize-members')
             @include('scripts.scripts')
-            @include('alerts.invalid-name')
         @endif
         @if( $project->creator_id !== Auth::user()->id)
             <form action="{{ route('projectUsers.removeMe', $project->id) }}" method="post"

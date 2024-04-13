@@ -1,5 +1,6 @@
 @extends('helpers.header')
 
+@section('title', $user->name)
 @section('content')
     <body>
     <div>

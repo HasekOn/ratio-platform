@@ -63,7 +63,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => "No matching user found with the provited email or wrong password"
+            'email' => "No matching user found with the provided email or wrong password"
         ]);
     }
 
@@ -75,7 +75,7 @@ class AuthController extends Controller
         auth()->logout();
         \request()->session()->invalidate();
         \request()->session()->regenerateToken();
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'You have successfully logged out');
     }
 
     /**

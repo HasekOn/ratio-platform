@@ -38,9 +38,11 @@ class UserProjectController extends Controller
 
             Mail::to($userName)->send(new InvitationEmail($invitation->remember_token, $invitation, $project));
 
-            return redirect()->route('projects.index');
+            return redirect()->route('projects.index')->with('success', 'The invitation has been successfully sent.');
+        } elseif ($user?->id === $project->creator_id) {
+            return redirect()->route('projects.index')->with('error', "You cant add yourself to the project.");
         } else {
-            return redirect()->route('projects.index')->with('error', "User is already member of project or Invalid username");
+            return redirect()->route('projects.index')->with('error', "User is already member of project or Invalid email");
         }
     }
 
@@ -59,8 +61,10 @@ class UserProjectController extends Controller
         if ($user && $project->isProjectMember($user) && $user->id!== $project->creator_id) {
             $project->users()->detach($user->id);
             return redirect()->route('projects.index');
+        } elseif ($user?->id === $project->creator_id) {
+            return redirect()->route('projects.index')->with('error', "You cant remove yourself from project yet");
         } else {
-            return redirect()->route('projects.index')->with('error', "User is not member of project or Invalid name");
+            return redirect()->route('projects.index')->with('error', "User is not member of project or Invalid email");
         }
     }
 

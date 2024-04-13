@@ -30,4 +30,16 @@
     closeBtn.addEventListener('click', () => {
         menuContent.classList.remove('active')
     })
+
+    setTimeout(function() {
+        document.querySelectorAll('.alert').forEach(function(element) {
+            element.style.display = 'none';
+        });
+    }, 3500);
+
+    setTimeout(function() {
+        document.querySelectorAll('.success').forEach(function(element) {
+            element.style.display = 'none';
+        });
+    }, 3500);
 </script>

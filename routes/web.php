@@ -25,7 +25,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [YourWorkController::class, 'index'])->name('ratio.home');
+    Route::get('/task/{status}', [YourWorkController::class, 'getTaskByStatus'])->name('status');
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
+    Route::get('/search/{project}', [ProjectController::class, 'search'])->name('search');
+    Route::get('/project/{project}/{status}', [ProjectController::class, 'getTaskByStatus'])->name('projectTaskStatus');
     Route::resource('tasks', TaskController::class);
     Route::resource('users', UserController::class)->only(['show', 'edit', 'update']);
     Route::resource('projects', ProjectController::class);

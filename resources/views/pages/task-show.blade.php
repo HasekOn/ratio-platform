@@ -1,4 +1,6 @@
 @extends('helpers.header')
+
+@section('title', $task->name)
 @section('content')
     <body>
     @if($editing ?? false)
@@ -16,11 +18,19 @@
                     @enderror
                     <label class="loginText">Attributes:</label><br>
                     <div class="attributes">
-                        <input name="status" type="text" value="{{ $task->status }}" placeholder="Status">
+                        <select name="status" class="select">
+                            <option value="TO DO" {{ $task->status == 'TO DO' ? 'selected' : '' }}>TO DO</option>
+                            <option value="In PROGRESS" {{ $task->status == 'In PROGRESS' ? 'selected' : '' }}>In PROGRESS</option>
+                            <option value="TO REVIEW" {{ $task->status == 'TO REVIEW' ? 'selected' : '' }}>TO REVIEW</option>
+                            <option value="RETURNED" {{ $task->status == 'RETURNED' ? 'selected' : '' }}>RETURNED</option>
+                            <option value="DONE" {{ $task->status == 'DONE' ? 'selected' : '' }}>DONE</option>
+                            <option value="TO CANCEL" {{ $task->status == 'TO CANCEL' ? 'selected' : '' }}>TO CANCEL</option>
+                        </select>
                         <input name="effort" type="text" value="{{ $task->effort }}" placeholder="Effort">
                         <input name="priority" type="text" value="{{ $task->priority }}" placeholder="Priority">
                         <input name="timeEst" type="date" value="{{ $task->timeEst }}" placeholder="Time Est">
                     </div>
+
                     @error('timeEst')
                     <span> {{ "[" . $message . "]" }}</span>
                     @enderror
@@ -32,7 +42,7 @@
                     @error('description')
                     <span> {{ "[" . $message . "]" }}</span>
                     @enderror
-                    <button class="createBtn">Update</button>
+                    <button class="createTaskBtn">Update</button>
                 </form>
             </div>
         </div>
