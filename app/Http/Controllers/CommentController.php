@@ -6,7 +6,6 @@ use App\Http\Requests\Comment\CreateCommentRequest;
 use App\Models\Comment;
 use App\Models\Task;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {

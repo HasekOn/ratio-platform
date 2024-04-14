@@ -47,7 +47,8 @@ class Invitation extends Model
      * @param string $remember_token
      * @return mixed
      */
-    public function getInvitation($user_id, $project_id, string $remember_token) {
+    public function getInvitation($user_id, $project_id, string $remember_token)
+    {
         return Invitation::where('user_id', $user_id)
             ->where('project_id', $project_id)
             ->where('remember_token', $remember_token)

@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <title>  @yield('title') | {{ config('app.name') }}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 @guest()
     @yield('auth')
@@ -29,8 +31,12 @@
                 </div>
             </div>
             <ul class="navMenu">
-                <li><a href="{{ url('/') }}" class="{{ Route::is('ratio.home', 'tasks.show', 'status') ? 'activeBtn' : 'noneActive'}}">Your work</a></li>
-                <li><a href="{{ url('/projects') }}" class="{{ Route::is('projects.index', 'projects.show', 'projectTasks.show', 'projectTaskStatus') ? 'activeBtn' : 'noneActive'}}">Projects</a></li>
+                <li><a href="{{ url('/') }}"
+                       class="{{ Route::is('ratio.home', 'tasks.show', 'status') ? 'activeBtn' : 'noneActive'}}">Your
+                        work</a></li>
+                <li><a href="{{ url('/projects') }}"
+                       class="{{ Route::is('projects.index', 'projects.show', 'projectTasks.show', 'projectTaskStatus') ? 'activeBtn' : 'noneActive'}}">Projects</a>
+                </li>
                 <li>Time sheet</li>
                 <li>Ideas</li>
             </ul>

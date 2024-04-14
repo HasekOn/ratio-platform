@@ -7,8 +7,6 @@ use App\Mail\VerificationEmail;
 use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -101,7 +99,7 @@ class AuthController extends Controller
      */
     public function resendEmail(User $user)
     {
-        if (!$user->hasVerifiedEmail()){
+        if (!$user->hasVerifiedEmail()) {
 
             Mail::to($user->email)->send(new VerificationEmail($user->remember_token, $user));
 

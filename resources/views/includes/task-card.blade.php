@@ -10,7 +10,8 @@
     </div>
     <a href="{{ route('tasks.show', $task->id) }}"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></a>
     @if($task->status === 'TO CANCEL')
-        <form method="post" action="{{ route('tasks.destroy', $task->id) }}" onsubmit="return confirm('Are you sure?');">
+        <form method="post" action="{{ route('tasks.destroy', $task->id) }}"
+              onsubmit="return confirm('Are you sure?');">
             @csrf
             @method('delete')
             <button class="deleteTask" type="submit"><i class="fa-solid fa-trash"></i></button>

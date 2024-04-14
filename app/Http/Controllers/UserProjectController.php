@@ -7,7 +7,6 @@ use App\Models\Invitation;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -29,7 +28,7 @@ class UserProjectController extends Controller
 
         $user = User::where('email', $userName)->first();
 
-        if ($user && !$project->isProjectMember($user) && $user->id!== $project->creator_id) {
+        if ($user && !$project->isProjectMember($user) && $user->id !== $project->creator_id) {
             $invitation = new Invitation();
             $invitation->user_id = $user->id;
             $invitation->project_id = $project->id;
@@ -58,7 +57,7 @@ class UserProjectController extends Controller
 
         $user = User::where('email', $userName)->first();
 
-        if ($user && $project->isProjectMember($user) && $user->id!== $project->creator_id) {
+        if ($user && $project->isProjectMember($user) && $user->id !== $project->creator_id) {
             $project->users()->detach($user->id);
             return redirect()->route('projects.index');
         } elseif ($user?->id === $project->creator_id) {

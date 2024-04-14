@@ -4,9 +4,7 @@ namespace App\Mail;
 
 use App\Models\Invitation;
 use App\Models\Project;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;

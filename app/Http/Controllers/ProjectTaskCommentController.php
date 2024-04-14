@@ -6,7 +6,6 @@ use App\Http\Requests\ProjectTaskComment\CreateProjectTaskCommentRequest;
 use App\Models\ProjectTask;
 use App\Models\ProjectTaskComment;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class ProjectTaskCommentController extends Controller
 {

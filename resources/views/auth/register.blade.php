@@ -34,16 +34,16 @@
                         @enderror
                     </div>
                 </div>
-                    <div class="registration-avatar">
-                        <div class="avatar">
-                            <img src="images/ratio.png" alt="userProfilePicture">
-                        </div>
+                <div class="registration-avatar">
+                    <div class="avatar">
+                        <img src="images/ratio.png" alt="userProfilePicture">
                     </div>
                 </div>
-                <div class="buttons">
-                    <button type="submit" name="submit" class="submit">Register</button>
-                    <a href="/login" class="loginText">Login here</a>
-                </div>
+            </div>
+            <div class="buttons">
+                <button type="submit" name="submit" class="submit">Register</button>
+                <a href="/login" class="loginText">Login here</a>
+            </div>
         </form>
     </section>
 @endsection

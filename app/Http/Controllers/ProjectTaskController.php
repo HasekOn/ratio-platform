@@ -7,7 +7,6 @@ use App\Http\Requests\ProjectTask\UpdateProjectTaskRequest;
 use App\Models\Project;
 use App\Models\ProjectTask;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class ProjectTaskController extends Controller
 {

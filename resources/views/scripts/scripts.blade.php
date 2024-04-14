@@ -33,26 +33,26 @@
         menuContent.classList.remove('active')
     })
 
-    setTimeout(function() {
-        document.querySelectorAll('.alert').forEach(function(element) {
+    setTimeout(function () {
+        document.querySelectorAll('.alert').forEach(function (element) {
             element.style.display = 'none';
         });
     }, 3500);
 
-    setTimeout(function() {
-        document.querySelectorAll('.success').forEach(function(element) {
+    setTimeout(function () {
+        document.querySelectorAll('.success').forEach(function (element) {
             element.style.display = 'none';
         });
     }, 3500);
 
-    $(document).ready(function() {
-        $('.task-link').click(function(e) {
+    $(document).ready(function () {
+        $('.task-link').click(function (e) {
             e.preventDefault();
 
             var taskId = $(this).data('id');
             var taskShowUrl = $(this).hasClass('project-task-link') ? '/projects/' + taskId + '/preview' : '/tasks/' + taskId + '/preview';
 
-            $.get(taskShowUrl, function(data) {
+            $.get(taskShowUrl, function (data) {
                 $('#task-details').html(data);
             });
         });

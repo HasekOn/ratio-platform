@@ -20,11 +20,16 @@
                     <div class="attributes">
                         <select name="status" class="select">
                             <option value="TO DO" {{ $task->status == 'TO DO' ? 'selected' : '' }}>TO DO</option>
-                            <option value="In PROGRESS" {{ $task->status == 'IN PROGRESS' ? 'selected' : '' }}>IN PROGRESS</option>
-                            <option value="TO REVIEW" {{ $task->status == 'TO REVIEW' ? 'selected' : '' }}>TO REVIEW</option>
-                            <option value="RETURNED" {{ $task->status == 'RETURNED' ? 'selected' : '' }}>RETURNED</option>
+                            <option value="In PROGRESS" {{ $task->status == 'IN PROGRESS' ? 'selected' : '' }}>IN
+                                PROGRESS
+                            </option>
+                            <option value="TO REVIEW" {{ $task->status == 'TO REVIEW' ? 'selected' : '' }}>TO REVIEW
+                            </option>
+                            <option value="RETURNED" {{ $task->status == 'RETURNED' ? 'selected' : '' }}>RETURNED
+                            </option>
                             <option value="DONE" {{ $task->status == 'DONE' ? 'selected' : '' }}>DONE</option>
-                            <option value="TO CANCEL" {{ $task->status == 'TO CANCEL' ? 'selected' : '' }}>TO CANCEL</option>
+                            <option value="TO CANCEL" {{ $task->status == 'TO CANCEL' ? 'selected' : '' }}>TO CANCEL
+                            </option>
                         </select>
                         <input name="effort" type="text" value="{{ $task->effort }}" placeholder="Effort">
                         <input name="priority" type="text" value="{{ $task->priority }}" placeholder="Priority">

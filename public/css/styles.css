@@ -185,7 +185,6 @@ ul li:hover {
 }
 
 
-
 .projectBox {
     display: grid;
     width: 100%;
@@ -485,7 +484,7 @@ input {
 
 
 .ProjectForm {
-display: flex;
+    display: flex;
 }
 
 dialog {
@@ -804,6 +803,7 @@ dialog::backdrop {
     .loginInput {
         width: 80%;
     }
+
     .projectBox {
         grid-template-columns: repeat(1, minmax(0, 1fr));
         grid-template-rows: repeat(1, minmax(0, 1fr));
