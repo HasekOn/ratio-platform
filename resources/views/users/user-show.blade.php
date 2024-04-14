@@ -35,34 +35,42 @@
             @endcan
             <img src="{{ $user->getImageURL() }}" class="image">
             <br>
-            <span>Username: {{ $user->name }}</span>
+            <p>Username: {{ $user->name }}</p>
             <br>
-            <span>Pocet tasku: {{ $user->tasks()->count() }}</span>
+            <p>Pocet tasku: {{ $user->tasks()->count() }}</p>
             <br>
-            <span>Bio: {{ $user->bio }}</span>
+            <p>Bio: {{ $user->bio }}</p>
             <hr>
-            @can('update', $user)
-                My Projects:
-                @forelse($projects as $project)
-                    @include('includes.project-card')
-                @empty
-                    <p>You have not created projects yet</p>
-                @endforelse
-                Joined Projects:
-                @forelse($joinedProjects as $project)
-                    @include('includes.project-card')
-                @empty
-                    <p>You have not joined projects yet</p>
-                @endforelse
-            @endcan
-            @can('update', $user)
-                Tasks:
-                @forelse($tasks as $task)
-                    @include('includes.task-card')
-                @empty
-                    <p>No tasks Found</p>
-                @endforelse
-            @endcan
+            <div class="box">
+                @can('update', $user)
+                    <div class="boxTaskProfile">
+                        My Projects:
+                        @forelse($projects as $project)
+                            @include('includes.project-card')
+                        @empty
+                            <p>You have not created projects yet</p>
+                        @endforelse
+                    </div>
+                    <div class="boxTaskProfile">
+                        Joined Projects:
+                        @forelse($joinedProjects as $project)
+                            @include('includes.project-card')
+                        @empty
+                            <p>You have not joined projects yet</p>
+                        @endforelse
+                    </div>
+                @endcan
+                @can('update', $user)
+                    <div class="boxTaskProfileLast">
+                        Tasks:
+                        @forelse($tasks as $task)
+                            @include('includes.task-card')
+                        @empty
+                            <p>No tasks Found</p>
+                        @endforelse
+                    </div>
+                @endcan
+            </div>
         @endif
     </div>
     </body>

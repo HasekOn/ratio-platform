@@ -151,6 +151,13 @@ ul li:hover {
     padding-top: 50px;
 }
 
+.boxPage {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+}
+
 .projectName {
     padding-top: 50px;
 }
@@ -214,6 +221,36 @@ ul li:hover {
     box-shadow: 1px 0 #4a5568;
 }
 
+.boxTaskPage {
+    margin-left: 10px;
+    width: 60%;
+    box-shadow: 1px 0 #4a5568;
+}
+
+.boxTaskPageCom {
+    margin-left: 10px;
+    width: 40%;
+}
+
+.boxTaskProfile {
+    margin-left: 10px;
+    width: 30%;
+    display: flex;
+    box-shadow: 1px 0 #4a5568;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.boxTaskProfileLast {
+    margin-left: 10px;
+    width: 30%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+
 .boxTaskLast {
     margin-left: 10px;
     width: 30%;
@@ -228,6 +265,7 @@ ul li:hover {
     transition: all ease 300ms;
     margin: 15px;
     position: relative;
+    width: 300px;
 }
 
 .task:hover {

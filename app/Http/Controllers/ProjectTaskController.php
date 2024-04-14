@@ -14,7 +14,7 @@ class ProjectTaskController extends Controller
 
     public function show(ProjectTask $projectTask)
     {
-        return view('pages.projectTask-show', compact('projectTask'));
+        return view('pages.projectTask-show', compact('projectTask'))->render();
     }
 
     public function edit(ProjectTask $projectTask)
@@ -26,7 +26,6 @@ class ProjectTaskController extends Controller
     /**
      * @param UpdateProjectTaskRequest $request
      * @param ProjectTask $projectTask
-     * @return RedirectResponse
      */
     public function update(UpdateProjectTaskRequest $request, ProjectTask $projectTask): RedirectResponse
     {

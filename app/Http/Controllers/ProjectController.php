@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Projet\CreateProjectRequest;
 use App\Http\Requests\Projet\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\ProjectTask;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -41,9 +42,18 @@ class ProjectController extends Controller
     {
         $this->authorize('view', $project);
 
-        $projectTasks = $project->tasks;
+        $projectTasks = $project->tasks()->orderBy('created_at', 'desc')->get();
 
         return view('pages.project-show', compact('project', 'projectTasks'));
+    }
+
+
+    /**
+     * @param ProjectTask $projectTask
+     */
+    public function projectTaskPreview(ProjectTask $projectTask)
+    {
+        return view('includes.one-projectTaskPreview', compact('projectTask'))->render();
     }
 
     /**
@@ -119,7 +129,7 @@ class ProjectController extends Controller
      * @param Project $project
      * @param string $status
      */
-    public function getTaskByStatus(Project $project, string $status) 
+    public function getTaskByStatus(Project $project, string $status)
     {
         $projectTasks = $project->tasks()->where('status', 'like', '%' . $status . '%')->get();
 

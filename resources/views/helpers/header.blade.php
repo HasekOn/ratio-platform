@@ -29,8 +29,8 @@
                 </div>
             </div>
             <ul class="navMenu">
-                <li><a href="{{ url('/') }}" class="{{ Route::is('ratio.home') ? 'activeBtn' : 'noneActive'}}">Your work</a></li>
-                <li><a href="{{ url('/projects') }}" class="{{ Route::is('projects.index') ? 'activeBtn' : 'noneActive'}}">Projects</a></li>
+                <li><a href="{{ url('/') }}" class="{{ Route::is('ratio.home', 'tasks.show', 'status') ? 'activeBtn' : 'noneActive'}}">Your work</a></li>
+                <li><a href="{{ url('/projects') }}" class="{{ Route::is('projects.index', 'projects.show', 'projectTasks.show', 'projectTaskStatus') ? 'activeBtn' : 'noneActive'}}">Projects</a></li>
                 <li>Time sheet</li>
                 <li>Ideas</li>
             </ul>

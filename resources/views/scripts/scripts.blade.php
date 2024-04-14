@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
     const dialog = document.querySelector("dialog");
     const showButton = document.querySelector("dialog + button");
@@ -42,4 +44,18 @@
             element.style.display = 'none';
         });
     }, 3500);
+
+    $(document).ready(function() {
+        $('.task-link').click(function(e) {
+            e.preventDefault();
+
+            var taskId = $(this).data('id');
+            var taskShowUrl = $(this).hasClass('project-task-link') ? '/projects/' + taskId + '/preview' : '/tasks/' + taskId + '/preview';
+
+            $.get(taskShowUrl, function(data) {
+                $('#task-details').html(data);
+            });
+        });
+    });
+
 </script>

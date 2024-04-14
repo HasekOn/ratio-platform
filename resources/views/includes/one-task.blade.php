@@ -1,5 +1,5 @@
-<div class="box">
-    <div class="boxTask">
+<div class="boxPage">
+    <div class="boxTaskPage">
         <div class="task">
             <p>Name: {{ $task->name }}</p>
             <p>Status: {{ $task->status }}</p>
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="boxTask">
+    <div class="boxTaskPageCom">
         @forelse($task->comments as $comment)
             {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }} -
             {{ $comment->content }}

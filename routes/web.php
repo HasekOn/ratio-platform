@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::get('/search/{project}', [ProjectController::class, 'search'])->name('search');
     Route::get('/project/{project}/{status}', [ProjectController::class, 'getTaskByStatus'])->name('projectTaskStatus');
+    Route::get('/tasks/{task}/preview', [TaskController::class, 'showTaskPreview'])->name('taskPreview');
+    Route::get('/projects/{projectTask}/preview', [ProjectController::class, 'projectTaskPreview'])->name('projectTaskPreview');
     Route::resource('tasks', TaskController::class);
     Route::resource('users', UserController::class)->only(['show', 'edit', 'update']);
     Route::resource('projects', ProjectController::class);

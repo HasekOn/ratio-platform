@@ -6,7 +6,7 @@
     @if($editing ?? false)
         <div class="bg-modal">
             <div class="modal-content2">
-                <div class="close" id="close"><a href="{{ route('tasks.show', $task->id) }}">+</a></div>
+                <div class="close" id="close"><a href="{{ route('ratio.home') }}">+</a></div>
                 <p class="loginText">Edit Task</p>
                 <form action="{{ route('tasks.update', $task->id) }}" method="post">
                     @csrf
@@ -20,7 +20,7 @@
                     <div class="attributes">
                         <select name="status" class="select">
                             <option value="TO DO" {{ $task->status == 'TO DO' ? 'selected' : '' }}>TO DO</option>
-                            <option value="In PROGRESS" {{ $task->status == 'In PROGRESS' ? 'selected' : '' }}>In PROGRESS</option>
+                            <option value="In PROGRESS" {{ $task->status == 'IN PROGRESS' ? 'selected' : '' }}>IN PROGRESS</option>
                             <option value="TO REVIEW" {{ $task->status == 'TO REVIEW' ? 'selected' : '' }}>TO REVIEW</option>
                             <option value="RETURNED" {{ $task->status == 'RETURNED' ? 'selected' : '' }}>RETURNED</option>
                             <option value="DONE" {{ $task->status == 'DONE' ? 'selected' : '' }}>DONE</option>

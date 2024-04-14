@@ -8,15 +8,6 @@
             <p>{{ $projectTask->timeEst }}</p>
             <p>{{ $projectTask->description }}</p>
             <p>Created by: {{ $projectTask->getUserNameById($projectTask->user_id) }}</p>
-            <div>
-                <form method="post" action="{{ route('projectTasks.destroy', $projectTask->id) }}"
-                      onsubmit="return confirm('Are you sure?');">
-                    @csrf
-                    @method('delete')
-                    <a href="{{ route('projectTasks.edit', $projectTask->id) }}">Edit</a>
-                    <button class="deleteTask" type="submit"><i class="fa-solid fa-trash"></i></button>
-                </form>
-            </div>
         </div>
     </div>
 
@@ -30,14 +21,5 @@
         @empty
             <p>No comment found</p>
         @endforelse
-        <div class="singleTask">
-            <div>
-                <form method="post" action="{{ route('projectTasks.comments.store', $projectTask->id) }}">
-                    @csrf
-                    <textarea rows="1" name="content"></textarea>
-                    <button class="loginText" type="submit">Post comment</button>
-                </form>
-            </div>
-        </div>
     </div>
 </div>

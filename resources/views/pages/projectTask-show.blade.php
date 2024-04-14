@@ -19,7 +19,14 @@
                     @enderror
                     <label class="loginText">Attributes:</label><br>
                     <div class="attributes">
-                        <input name="status" type="text" value="{{ $projectTask->status }}" placeholder="Status">
+                        <select name="status" class="select">
+                            <option value="TO DO" {{ $projectTask->status == 'TO DO' ? 'selected' : '' }}>TO DO</option>
+                            <option value="In PROGRESS" {{ $projectTask->status == 'IN PROGRESS' ? 'selected' : '' }}>IN PROGRESS</option>
+                            <option value="TO REVIEW" {{ $projectTask->status == 'TO REVIEW' ? 'selected' : '' }}>TO REVIEW</option>
+                            <option value="RETURNED" {{ $projectTask->status == 'RETURNED' ? 'selected' : '' }}>RETURNED</option>
+                            <option value="DONE" {{ $projectTask->status == 'DONE' ? 'selected' : '' }}>DONE</option>
+                            <option value="TO CANCEL" {{ $projectTask->status == 'TO CANCEL' ? 'selected' : '' }}>TO CANCEL</option>
+                        </select>
                         <input name="effort" type="text" value="{{ $projectTask->effort }}" placeholder="Effort">
                         <input name="priority" type="text" value="{{ $projectTask->priority }}" placeholder="Priority">
                         <input name="timeEst" type="date" value="{{ $projectTask->timeEst }}" placeholder="Time Est">
@@ -43,4 +50,5 @@
         @include('includes.one-projectTask')
     @endif
     </body>
+    @include('scripts.scripts')
 @endsection

@@ -22,6 +22,13 @@ class TaskController extends Controller
         return view('pages.task-show', compact('task'));
     }
 
+    public function showTaskPreview(Task $task)
+    {
+        $this->authorize('view', $task);
+
+        return view('includes.one-taskPreview', compact('task'))->render();
+    }
+
     /**
      * @param CreateTaskRequest $request
      * @return RedirectResponse

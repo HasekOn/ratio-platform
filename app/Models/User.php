@@ -85,7 +85,7 @@ class User extends Authenticatable
      */
     public function showProjectToMember(User $user): mixed
     {
-        return User::whereHas('projects', function ($query) use ($user) {
+        return Project::whereHas('users', function ($query) use ($user) {
             $query->where('user_id', $user->id);
         })->get();
     }

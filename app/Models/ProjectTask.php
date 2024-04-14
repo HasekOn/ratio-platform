@@ -59,4 +59,14 @@ class ProjectTask extends Model
             return null;
         }
     }
+
+    /**
+     * @param int $projectId
+     * @return Project|null
+     */
+    public function getProjectById(int $projectId): ?Project
+    {
+        return Project::find($projectId);
+    }
+
 }
