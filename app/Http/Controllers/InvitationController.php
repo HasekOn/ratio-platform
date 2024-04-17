@@ -26,6 +26,6 @@ class InvitationController extends Controller
                 return redirect()->route('projects.index')->with('success', "You have been successfully added to the team.");
             }
         }
-        return redirect()->route('ratio.home')->with('error', "You cannot be added to the team.");
+        return redirect()->route('projects.index')->with('error', "You cannot be added to the team.");
     }
 }

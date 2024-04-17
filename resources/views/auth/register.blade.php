@@ -7,36 +7,28 @@
             @csrf
             <div class="registration-wrap">
                 <div class="register-container">
-                    <div class="">
-                        <input type="text" name="name" id="name" class="loginInput" placeholder="Name...">
-                        @error('name')
-                        <span class=""> {{ $message }} </span>
-                        @enderror
-                    </div>
-                    <div class="">
-                        <input type="email" name="email" id="email" class="loginInput" placeholder="Email...">
-                        @error('email')
-                        <span class=""> {{ $message }} </span>
-                        @enderror
-                    </div>
-                    <div class="">
-                        <input type="password" name="password" id="password" class="loginInput"
-                               placeholder="Password...">
-                        @error('password')
-                        <span class=""> {{ $message }} </span>
-                        @enderror
-                    </div>
-                    <div class="">
-                        <input type="password" name="password_confirmation" id="confirm-password" class="loginInput"
-                               placeholder="Confirm Password...">
-                        @error('password_confirmation')
-                        <span class=""> {{ $message }} </span>
-                        @enderror
-                    </div>
+                    <input type="text" name="name" id="name" class="loginInput" placeholder="Name...">
+                    @error('name')
+                    <span class=""> {{ $message }} </span>
+                    @enderror
+                    <input type="email" name="email" id="email" class="loginInput" placeholder="Email...">
+                    @error('email')
+                    <span class=""> {{ $message }} </span>
+                    @enderror
+                    <input type="password" name="password" id="password" class="loginInput"
+                           placeholder="Password...">
+                    @error('password')
+                    <span class=""> {{ $message }} </span>
+                    @enderror
+                    <input type="password" name="password_confirmation" id="confirm-password" class="loginInput"
+                           placeholder="Confirm Password...">
+                    @error('password_confirmation')
+                    <span class=""> {{ $message }} </span>
+                    @enderror
                 </div>
                 <div class="registration-avatar">
                     <div class="avatar">
-                        <img src="images/ratio.png" alt="userProfilePicture">
+                        <img src="images/logoRegister.png" alt="userProfilePicture">
                     </div>
                 </div>
             </div>

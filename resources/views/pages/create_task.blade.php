@@ -2,10 +2,10 @@
     <div class="close" id="close">
         <button>+</button>
     </div>
-    <p class="loginText">Create Task</p>
+    <h3>Create Task</h3>
     <form action="{{ route('tasks.store') }}" method="post">
         @csrf
-        <div class="name"><input name="name" type="text" placeholder="Name..."></div>
+        <div class="name"><input name="name" type="text" placeholder="Name..." class="taskInput"></div>
         @error('name')
         <span> {{ "[" . $message . "]" }}</span>
         @enderror
@@ -18,9 +18,9 @@
                 <option value="DONE">DONE</option>
                 <option value="TO CANCEL">TO CANCEL</option>
             </select>
-            <input name="effort" type="text" placeholder="Effort...">
-            <input name="priority" type="text" placeholder="Priority...">
-            <input name="timeEst" type="date" placeholder="Time Est...">
+            <input class="taskInput" name="effort" type="text" placeholder="Effort...">
+            <input class="taskInput" name="priority" type="text" placeholder="Priority...">
+            <input class="taskInput" name="timeEst" type="date" placeholder="Time Est...">
         </div>
         @error('timeEst')
         <span> {{ "[" . $message . "]" }}</span>

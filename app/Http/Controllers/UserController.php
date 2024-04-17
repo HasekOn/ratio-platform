@@ -59,4 +59,19 @@ class UserController extends Controller
     {
         return $this->show(auth()->user());
     }
+
+    public function userProfile(User $user)
+    {
+        return $this->show($user);
+    }
+
+    public function removeProfilePhoto(User $user)
+    {
+        $this->authorize('update', $user);
+        $editing = true;
+        $tasks = $user->tasks()->paginate();
+        $user->image = null;
+        $user->save();
+        return view('users.user-show', compact('user', 'editing', 'tasks'));
+    }
 }

@@ -8,18 +8,23 @@
             <h3 class="register-headline">Login</h3>
             <div class="registration-wrap">
                 <div class="register-container">
-                    <div class="">
+                    <div class="loginDiv">
                         <input type="email" name="email" id="email" class="loginInput" placeholder="Email...">
                         @error('email')
                         <p class="loginError">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="">
+                    <div class="loginDiv">
                         <input type="password" name="password" id="password" class="loginInput"
                                placeholder="Password...">
                         @error('password')
                         <p class="loginError">{{ $message }}</p>
                         @enderror
+                    </div>
+                </div>
+                <div class="registration-avatar">
+                    <div class="avatar">
+                        <img src="images/logoRegister.png" alt="userProfilePicture">
                     </div>
                 </div>
             </div>

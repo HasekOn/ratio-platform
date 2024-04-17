@@ -6,8 +6,8 @@
     @if($editing ?? false)
         <div class="bg-modal">
             <div class="modal-content2">
-                <div class="close" id="close"><a href="{{ route('ratio.home') }}">+</a></div>
-                <p class="loginText">Edit Task</p>
+                <div class="close" id="close"><a href="{{ route('tasks.show', $task->id) }}" class="closeButton">+</a></div>
+                <h3 class="loginText">Edit Task</h3>
                 <form action="{{ route('tasks.update', $task->id) }}" method="post">
                     @csrf
                     @method('put')

@@ -48,13 +48,13 @@
             </form>
             <a href="{{ route('profile') }}" class="">
                 <div class="profile">
-                    <p>{{ Auth::user()->name }}</p>
+                    <p class="profileName">{{ Auth::user()->name }}</p>
                     <img src="{{ Auth::user()->getImageURL() }}" class="profilePhoto">
                 </div>
             </a>
         </div>
     </header>
-    <div class="line"></div>
+
 
 @yield('content')
 @include('scripts.scripts')

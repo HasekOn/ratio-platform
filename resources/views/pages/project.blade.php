@@ -9,13 +9,13 @@
             @include('alerts.error')
             <h1 class="projectText">Projects</h1>
             <h2 class="projectText">Search</h2>
-            <form action="{{ route('projects.index') }}" method="get" class="searchForm">
-                <input value="{{ request('search', '') }}" class="searchBarProject" placeholder="..." type="text"
+            <form action="{{ route('projects.index') }}" method="get" class="hovno">
+                <input value="{{ request('search', '') }}" class="searchBar" placeholder="..." type="text"
                        name="search">
-                <button class="createTaskBtn">Search</button>
+                <button class="searchBtn">Search</button>
             </form>
             @include('pages.create_project')
-            <button class="createTaskBtn">Vytvořit nový projekt</button>
+            <button class="createTaskBtn">Create new Project</button>
         </div>
     </div>
     <div class="projectBox">

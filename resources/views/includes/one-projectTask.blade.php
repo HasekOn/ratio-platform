@@ -1,13 +1,13 @@
-<div class="boxPage">
+<div class="boxPagePreview">
     <div class="boxTaskPage">
-        <div class="task">
-            <p>{{ $projectTask->name }}</p>
-            <p>{{ $projectTask->status }}</p>
-            <p>{{ $projectTask->effort }}</p>
-            <p>{{ $projectTask->priority }}</p>
-            <p>{{ $projectTask->timeEst }}</p>
-            <p>{{ $projectTask->description }}</p>
-            <p>Created by: {{ $projectTask->getUserNameById($projectTask->user_id) }}</p>
+        <div class="taskEdit">
+            <p>Name: {{ $projectTask->name }}</p>
+            <p>Status: {{ $projectTask->status }}</p>
+            <p>Effort: {{ $projectTask->effort }}</p>
+            <p>Priority: {{ $projectTask->priority }}</p>
+            <p>Complete by: {{ $projectTask->timeEst }}</p>
+            <p>Description: {{ $projectTask->description }}</p>
+            <a href="{{ route('userProfile', $projectTask->user_id) }}" class="">Created by: {{ $projectTask->getUserNameById($projectTask->user_id) }}</a>
             <div>
                 <form method="post" action="{{ route('projectTasks.destroy', $projectTask->id) }}"
                       onsubmit="return confirm('Are you sure?');">

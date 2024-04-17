@@ -89,4 +89,16 @@ class User extends Authenticatable
             $query->where('user_id', $user->id);
         })->get();
     }
+
+    /**
+     * @return int
+     */
+    public function allUserProjects(): int
+    {
+        $createdProjectsCount = $this->project()->count();
+        $participatedProjectsCount = $this->projects()->count();
+
+        return $createdProjectsCount + $participatedProjectsCount;
+    }
+
 }
