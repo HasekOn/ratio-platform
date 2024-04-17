@@ -40,7 +40,7 @@
                 @endcan
             </form>
         @else
-            <div class="profilPage">
+            <div class="profilePage">
                 <img src="{{ $user->getImageURL() }}" class="image">
                 <br>
                 <p>Username: {{ $user->name }}</p>

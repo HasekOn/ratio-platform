@@ -32,6 +32,7 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
         $user->setRememberToken(Str::random(60));
+        $user->email_count++;
         $user->save();
 
         Mail::to($user->email)->send(new VerificationEmail($user->remember_token, $user));
@@ -99,18 +100,22 @@ class AuthController extends Controller
      */
     public function resendEmail(User $user)
     {
-        if (!$user->hasVerifiedEmail()) {
+        if (!$user->hasVerifiedEmail() && $user->email_count <= 4) {
 
             Mail::to($user->email)->send(new VerificationEmail($user->remember_token, $user));
+            $user->email_count++;
+            $user->save();
 
             return view('emails.verify-email', [
                 'user' => $user
-            ]);
+            ])->with('success', 'Email was resent successfully');
         } else {
             auth()->logout();
             \request()->session()->invalidate();
             \request()->session()->regenerateToken();
-            return redirect()->route('login');
+            $user->email_count = null;
+            $user->save();
+            return redirect()->route('login')->with('error', 'No more available email resent');
         }
     }
 }

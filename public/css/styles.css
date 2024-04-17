@@ -247,6 +247,7 @@ ul li:hover {
     text-decoration: none;
     display: block;
     border-bottom: 1px solid #ddd;
+    background-color: #7BC9FF;
 }
 
 .selectStatus a:last-child {
@@ -254,7 +255,7 @@ ul li:hover {
 }
 
 .selectStatus a:hover {
-    background-color: #ddd;
+    background-color: #8576FF;
 }
 
 .show {
@@ -820,7 +821,7 @@ dialog::backdrop {
     width: 100%;
 }
 
-.profilPage{
+.profilePage{
     padding-top: 20px;
     display: flex;
     justify-content: center;
