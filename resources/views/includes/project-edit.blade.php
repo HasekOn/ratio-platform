@@ -27,7 +27,7 @@
                 @error('description')
                 <span> {{ "[" . $message . "]" }}</span>
                 @enderror
-                <button class="createBtn">Update</button>
+                <button class="submit">Update</button>
             </form>
         </div>
     </div>
