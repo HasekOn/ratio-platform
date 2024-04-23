@@ -1,7 +1,7 @@
 <div id="myModal" class="modal">
     <div class="modal-content2">
         <button type="button" class="close" data-dismiss="modal" onclick="closeModal()">+</button>
-        <p class="showMembersContent">Add or Remove project members</p>
+        <h3 class="showMembersContent">Add or Remove project members</h3>
         <label class="organizeMembersContent">Add members:</label>
         <form action="{{ route('projectUsers.store', $project->id) }}" method="post">
             <div class="modal-body">

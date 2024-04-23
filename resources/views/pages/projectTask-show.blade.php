@@ -6,7 +6,7 @@
     @if($editing ?? false)
         <div class="bg-modal">
             <div class="modal-content2">
-                <div class="close" id="close"><a href="{{ route('projectTasks.show', $projectTask->id) }}">+</a></div>
+                <div class="close" id="close"><a href="{{ route('projectTasks.show', $projectTask->id) }}"><button>+</button></a></div>
                 <p class="loginText">Edit Task</p>
                 <form action="{{ route('projectTasks.update', $projectTask->id) }}" method="post">
                     @csrf

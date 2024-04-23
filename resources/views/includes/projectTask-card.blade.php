@@ -9,7 +9,11 @@
         @endif
         <p>Created by: {{ $task->getUserNameById($task->user_id) }}</p>
     </div>
-    <a href="{{ route('projectTasks.show', $task->id) }}"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></a>
+    <a href="{{ route('projectTasks.show', $task->id) }}">
+        <div class="openTask">
+            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        </div>
+    </a>
     @if($task->status === 'TO CANCEL')
         <form method="post" action="{{ route('projectTasks.destroy', $task->id) }}"
               onsubmit="return confirm('Are you sure?');">

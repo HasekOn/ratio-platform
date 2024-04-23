@@ -8,7 +8,11 @@
             <p>Complete by: {{ \Carbon\Carbon::parse($task->timeEst)->format('M-d') }}</p>
         @endif
     </div>
-    <a href="{{ route('tasks.show', $task->id) }}"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></a>
+    <a href="{{ route('tasks.show', $task->id) }}">
+        <div class="openTask">
+            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        </div>
+    </a>
     @if($task->status === 'TO CANCEL')
         <form method="post" action="{{ route('tasks.destroy', $task->id) }}"
               onsubmit="return confirm('Are you sure?');">

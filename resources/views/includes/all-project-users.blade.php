@@ -3,7 +3,7 @@
 @section('content')
     <div class="bg-modal">
         <div class="modal-content2">
-            <div class="close" id="close"><a href="{{ route('projects.index') }}" class="closeButton">+</a></div>
+            <div class="close" id="close"><a href="{{ route('projects.index') }}"><button>+</button></a></div>
     <h3 class="showMembersH">Project members:</h3>
             <div class="showMembers">
                 <div class="showMembersContent">

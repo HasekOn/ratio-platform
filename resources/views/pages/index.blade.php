@@ -42,7 +42,7 @@
                 @endforelse
             </div>
         </div>
-        <div id="task-details"></div>
+        <div id="task-details" class="task-details"></div>
     </div>
     </body>
 

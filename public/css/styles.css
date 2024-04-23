@@ -27,6 +27,7 @@ a {
     top: 0;
     left: 0;
     background-color: #2e279f;
+    z-index: 20;
 }
 
 .line {
@@ -287,14 +288,17 @@ ul li:hover {
 }
 
 .boxTaskPage {
-    margin-left: 10px;
-    width: 60%;
-    box-shadow: 1px 0 #4a5568;
+    padding-inline: 50px;
+    width: 100%;
 }
 
 .boxTaskPageCom {
     margin-left: 10px;
-    width: 40%;
+    width: 100%;
+}
+
+.task-details {
+    width: 100%;
 }
 
 .boxTaskProfile {
@@ -330,7 +334,157 @@ ul li:hover {
     transition: all ease 300ms;
     margin: 15px;
     position: relative;
-    width: 300px;
+    width: 100%;
+}
+
+.bigTask {
+    font-size: 18px;
+    box-shadow: 0 0 2px #971ad5;
+    border-radius: 20px;
+    padding: 15px;
+    transition: all ease 300ms;
+    margin: 15px;
+    position: relative;
+    width: 100%;
+}
+
+.taskHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px #4a5568 solid;
+    padding-bottom: 20px;
+}
+
+.taskHeader > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.taskInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.taskInfo > i {
+    border: 1px solid #4a5568;
+    border-radius: 50%;
+    padding:3px 8px;
+    font-size: 0.9rem;
+}
+
+.taskInfo p {
+    font-weight: 700;
+}
+
+.taskDescriptionHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.taskDescriptionHeader > i {
+    font-size: 0.9rem;
+}
+
+.taskDescriptionHeader p {
+    font-weight: 700;
+}
+
+.taskCommentsHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.taskCommentsHeader > i {
+    font-size: 0.9rem;
+}
+
+.taskCommentsHeader p {
+    font-weight: 700;
+}
+
+.taskBody {
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.taskDate {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.taskDate > i {
+    font-size: 0.9rem;
+}
+
+.taskDate p {
+    font-weight: 700;
+}
+
+.taskCreator {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.taskCreator > i {
+    font-size: 0.9rem;
+}
+
+.taskCreator p {
+    font-weight: 700;
+}
+
+.taskUpdate {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.taskName {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.taskStatus {
+    background-color: blue;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.taskEffort {
+    background-color: orange;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.taskPriority {
+    background-color: red;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.taskSubtitle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 50px;
+    flex-wrap: wrap;
 }
 
 .task:hover {
@@ -518,6 +672,39 @@ input {
 
 .deleteTask:hover {
     color: red;
+}
+
+.taskEditing {
+    font-size: 20px;
+    cursor: pointer;
+    transition: all ease 300ms;
+    padding: 5px;
+}
+
+.taskEditing:hover {
+    color: yellow;
+}
+
+.taskDelete {
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: all ease 300ms;
+}
+
+.taskDelete:hover {
+    color: red;
+}
+
+.openTask {
+    transition: all ease 300ms;
+    width: max-content;
+}
+
+.openTask:hover {
+    color: yellow;
 }
 
 .edit {

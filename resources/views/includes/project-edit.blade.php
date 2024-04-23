@@ -3,7 +3,7 @@
     <body>
     <div class="bg-modal">
         <div class="modal-content2">
-            <div class="close" id="close"><a href="{{ route('projects.index', $project->id) }}">+</a></div>
+            <div class="close" id="close"><a href="{{ route('projects.index', $project->id) }}"><button>+</button></a></div>
             <p class="loginText">Edit Project</p>
             <form action="{{ route('projects.update', $project->id) }}" method="post">
                 @csrf
