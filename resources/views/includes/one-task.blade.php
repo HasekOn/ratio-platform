@@ -7,13 +7,14 @@
                 </div>
                 <div class="taskUpdate">
                     <p>Last Updated: {{ \Carbon\Carbon::parse($task->updated_at)->diffForHumans()}}</p>
-                        <form method="post" action="{{ route('tasks.destroy', $task->id) }}"
-                              onsubmit="return confirm('Are you sure?');">
-                            @csrf
-                            @method('delete')
-                            <a class="taskEditing" href="{{ route('tasks.edit', $task->id) }}"><i class="fa-solid fa-pencil"></i></a>
-                            <button class="taskDelete" type="submit"><i class="fa-solid fa-trash"></i></button>
-                        </form>
+                    <form method="post" action="{{ route('tasks.destroy', $task->id) }}"
+                          onsubmit="return confirm('Are you sure?');">
+                        @csrf
+                        @method('delete')
+                        <a class="taskEditing" href="{{ route('tasks.edit', $task->id) }}"><i
+                                class="fa-solid fa-pencil"></i></a>
+                        <button class="taskDelete" type="submit"><i class="fa-solid fa-trash"></i></button>
+                    </form>
                 </div>
             </div>
             <div class="taskInfo">
@@ -22,15 +23,15 @@
             </div>
             <div class="taskBody">
                 <div class="taskSubtitle">
-                    <div>
+                    <div class="labels">
                         <p>Status:</p>
                         <p class="taskStatus">{{ $task->status }}</p>
                     </div>
-                    <div>
+                    <div class="labels">
                         <p>Effort:</p>
                         <p class="taskEffort">{{ $task->effort }}</p>
                     </div>
-                    <div>
+                    <div class="labels">
                         <p>Priority:</p>
                         <p class="taskPriority">{{ $task->priority }}</p>
                     </div>
@@ -56,18 +57,38 @@
                         <p>Comments</p>
                     </div>
                     @forelse($task->comments as $comment)
-                        {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }} -
-                        {{ $comment->content }}
-                        | {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }} |
-                        <br>
+                        <div class="bigComment">
+                            <div class="commentUser">
+                                <img src="{{ $comment->getUserImageById($comment->user_id) }}" class="profilePhoto">
+                                <p> {{ $comment->getUserNameById($comment->user_id) }} </p>
+                                {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }}
+                                | {{ \Carbon\Carbon::parse($comment->created_at)->format('M-d') }} |
+                                <form method="post"
+                                      action="{{ route('tasks.comments.destroy', [$task->id, $comment->id]) }}"
+                                      onsubmit="return confirm('Are you sure?');">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="taskCommentDelete" type="submit"><i
+                                            class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <p class="commentText">{{ $comment->content }}</p>
+                        </div>
                     @empty
                         <p>No comment found</p>
                     @endforelse
-                    <div class="commentDiv">
-                        <form method="post" action="{{ route('tasks.comments.store', $task->id) }}" class="commentInput">
+                    <div class="projectTaskCommentInput">
+                        <div class="commentInputUserBar">
+                            <img src="{{ Auth::user()->getImageURL() }}" class="profilePhoto">
+                        </div>
+                        <form method="post" action="{{ route('tasks.comments.store', $task->id) }}"
+                              class="projectFormComment">
                             @csrf
-                            <textarea rows="1" name="content" placeholder="Add a comment"  class="searchBar"></textarea>
-                            <button class="searchBtn" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                            <textarea rows="1" name="content" class="commentTextArea"
+                                      placeholder="Add a comment"></textarea>
+                            <button class="searchCommentBtn" type="submit"><i class="fa-solid fa-paper-plane"></i>
+                            </button>
                         </form>
                     </div>
                 </div>

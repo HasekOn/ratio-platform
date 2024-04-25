@@ -62,13 +62,13 @@
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
             closeDropdowns();
         }
     }
 
-    document.onscroll = function() {
+    document.onscroll = function () {
         closeDropdowns();
     }
 
@@ -82,5 +82,6 @@
             }
         }
     }
-
 </script>
+
+@yield('scripts')

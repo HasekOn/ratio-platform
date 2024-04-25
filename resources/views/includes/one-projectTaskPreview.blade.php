@@ -15,15 +15,15 @@
             </div>
             <div class="taskBody">
                 <div class="taskSubtitle">
-                    <div>
+                    <div class="labels">
                         <p>Status:</p>
                         <p class="taskStatus">{{ $projectTask->status }}</p>
                     </div>
-                    <div>
+                    <div class="labels">
                         <p>Effort:</p>
                         <p class="taskEffort">{{ $projectTask->effort }}</p>
                     </div>
-                    <div>
+                    <div class="labels">
                         <p>Priority:</p>
                         <p class="taskPriority">{{ $projectTask->priority }}</p>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="taskComments">
                     <div class="taskCommentsHeader">
                         <i class="fa-solid fa-comments"></i>
-                        <p>Comments</p>
+                        <p>Comments:</p>
                     </div>
                     @forelse($projectTask->comments as $comment)
                         <div class="bigComment">

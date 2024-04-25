@@ -15,15 +15,15 @@
             </div>
             <div class="taskBody">
                 <div class="taskSubtitle">
-                    <div>
+                    <div class="labels">
                         <p>Status:</p>
                         <p class="taskStatus">{{ $task->status }}</p>
                     </div>
-                    <div>
+                    <div class="labels">
                         <p>Effort:</p>
                         <p class="taskEffort">{{ $task->effort }}</p>
                     </div>
-                    <div>
+                    <div class="labels">
                         <p>Priority:</p>
                         <p class="taskPriority">{{ $task->priority }}</p>
                     </div>
@@ -49,10 +49,15 @@
                         <p>Comments</p>
                     </div>
                     @forelse($task->comments as $comment)
-                        {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }} -
-                        {{ $comment->content }}
-                        | {{ \Carbon\Carbon::parse($comment->created_at)->format('M-d') }} |
-                        <br>
+                        <div class="bigComment">
+                            <div class="commentUser">
+                                <img src="{{ $comment->getUserImageById($comment->user_id) }}" class="profilePhoto">
+                                <p> {{ $comment->getUserNameById($comment->user_id) }} </p>
+                                {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }}
+                                | {{ \Carbon\Carbon::parse($comment->created_at)->format('M-d') }} |
+                            </div>
+                            <p class="commentText">{{ $comment->content }}</p>
+                        </div>
                     @empty
                         <p>No comment found</p>
                     @endforelse

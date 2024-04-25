@@ -18,7 +18,20 @@ class CommentController extends Controller
     {
         $validated = $request->validated();
         $validated['task_id'] = $task->id;
+        $validated['user_id'] = auth()->id();
         Comment::create($validated);
+
+        return redirect()->route('tasks.show', $task->id);
+    }
+
+    /**
+     * @param Task $task
+     * @param Comment $comment
+     * @return RedirectResponse
+     */
+    public function destroy(Task $task, Comment $comment): RedirectResponse
+    {
+        $comment->delete();
 
         return redirect()->route('tasks.show', $task->id);
     }

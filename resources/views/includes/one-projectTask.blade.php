@@ -23,15 +23,15 @@
             </div>
             <div class="taskBody">
                 <div class="taskSubtitle">
-                    <div>
+                    <div class="labels">
                         <p>Status:</p>
                         <p class="taskStatus">{{ $projectTask->status }}</p>
                     </div>
-                    <div>
+                    <div class="labels">
                         <p>Effort:</p>
                         <p class="taskEffort">{{ $projectTask->effort }}</p>
                     </div>
-                    <div>
+                    <div class="labels">
                         <p>Priority:</p>
                         <p class="taskPriority">{{ $projectTask->priority }}</p>
                     </div>
@@ -62,7 +62,7 @@
                 <div class="taskComments">
                     <div class="taskCommentsHeader">
                         <i class="fa-solid fa-comments"></i>
-                        <p>Comments</p>
+                        <p>Comments:</p>
                     </div>
                     @forelse($projectTask->comments as $comment)
                         <div class="bigComment">
@@ -71,6 +71,17 @@
                                 <p> {{ $comment->getUserNameById($comment->user_id) }} </p>
                                 {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }}
                                 | {{ \Carbon\Carbon::parse($comment->created_at)->format('M-d') }} |
+                                @if($comment->user_id === Auth::id())
+                                    <form method="post"
+                                          action="{{ route('projectTasks.comments.destroy', [$projectTask->id, $comment->id]) }}"
+                                          onsubmit="return confirm('Are you sure?');">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="taskCommentDelete" type="submit"><i
+                                                class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                             <p class="commentText">{{ $comment->content }}</p>
                         </div>
@@ -78,11 +89,17 @@
                         <p>No comment found</p>
                     @endforelse
                     <div class="projectTaskCommentInput">
-                            <form method="post" action="{{ route('projectTasks.comments.store', $projectTask->id) }}">
-                                @csrf
-                                <textarea rows="1" name="content" class="searchBar"></textarea>
-                                <button class="loginText" type="submit">Post comment</button>
-                            </form>
+                        <div class="commentInputUserBar">
+                            <img src="{{ Auth::user()->getImageURL() }}" class="profilePhoto">
+                        </div>
+                        <form method="post" action="{{ route('projectTasks.comments.store', $projectTask->id) }}"
+                              class="projectFormComment">
+                            @csrf
+                            <textarea rows="1" name="content" class="commentTextArea"
+                                      placeholder="Add a comment"></textarea>
+                            <button class="searchCommentBtn" type="submit"><i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

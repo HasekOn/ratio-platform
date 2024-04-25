@@ -35,8 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('tasks', TaskController::class);
     Route::resource('users', UserController::class)->only(['show', 'edit', 'update']);
     Route::resource('projects', ProjectController::class);
-    Route::resource('tasks.comments', CommentController::class)->only(['store']);
-    Route::resource('projectTasks.comments', ProjectTaskCommentController::class)->only(['store']);
+    Route::resource('tasks.comments', CommentController::class)->only(['store', 'destroy']);
+    Route::resource('projectTasks.comments', ProjectTaskCommentController::class)->only(['store', 'destroy']);
     Route::resource('projects.tasks', ProjectTaskController::class)->only(['store']);
     Route::resource('projectTasks', ProjectTaskController::class)->except(['store', 'index', 'create']);
 });

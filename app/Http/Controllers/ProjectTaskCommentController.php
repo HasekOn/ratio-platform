@@ -23,4 +23,16 @@ class ProjectTaskCommentController extends Controller
 
         return redirect()->route('projectTasks.show', $projectTask->id);
     }
+
+    /**
+     * @param ProjectTask $projectTask
+     * @param ProjectTaskComment $comment
+     * @return RedirectResponse
+     */
+    public function destroy(ProjectTask $projectTask, ProjectTaskComment $comment): RedirectResponse
+    {
+        $comment->delete();
+
+        return redirect()->route('projectTasks.show', $projectTask->id);
+    }
 }

@@ -173,7 +173,14 @@ ul li:hover {
     height: 100vh;
     flex-direction: row;
     justify-content: space-between;
+}
 
+.boxPageProjectTask {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .boxPagePreview {
@@ -185,7 +192,21 @@ ul li:hover {
 }
 
 .projectName {
-    padding-top: 50px;
+}
+
+.projectTaskBox {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.projectNameDiv {
+    padding-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .scrollable-div {
@@ -483,6 +504,7 @@ ul li:hover {
     padding: 5px 10px;
     font-size: 0.8rem;
     color: white;
+    text-align: center;
 }
 
 .taskEffort {
@@ -491,6 +513,7 @@ ul li:hover {
     padding: 5px 10px;
     font-size: 0.8rem;
     color: white;
+    text-align: center;
 }
 
 .taskPriority {
@@ -499,6 +522,7 @@ ul li:hover {
     padding: 5px 10px;
     font-size: 0.8rem;
     color: white;
+    text-align: center;
 }
 
 .taskSubtitle {
@@ -715,6 +739,22 @@ div span {
     color: red;
 }
 
+.labels {
+    font-weight: 700;
+}
+
+.taskCommentDelete {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: all ease 300ms;
+}
+
+.taskCommentDelete:hover {
+    color: red;
+}
+
 .openTask {
     transition: all ease 300ms;
     width: max-content;
@@ -829,9 +869,55 @@ input {
 
 .projectTaskCommentInput {
     display: flex;
-    flex-direction: column;
     width: 50%;
     margin-top: 20px;
+    border-top: 1px solid #4a5568;
+}
+
+.commentTextArea {
+    display: flex;
+    width: 100%;
+    height: 45px;
+    border-radius: 6px;
+    border: 1px solid #4a5568;
+    padding: 5px;
+}
+
+.commentArea {
+    width: 100%;
+    border: 1px solid #4a5568;
+    height: 45px;
+    margin-top: 10px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.commentInputUserBar {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+
+.projectFormComment {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+}
+
+.searchCommentBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: transparent;
+    height: 45px;
+    padding-inline: 10px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #4a5568;
 }
 
 .successLouOut {
@@ -1148,7 +1234,7 @@ input::file-selector-button {
 .register {
     height: 100vh;
     width: 100%;
-    background-color: #8576FF;
+    background-color: #2e279f;
     display: flex;
     justify-content: center;
     align-items: center;

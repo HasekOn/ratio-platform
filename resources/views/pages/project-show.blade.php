@@ -3,8 +3,10 @@
 @section('title', $project->name)
 @section('content')
     <body>
-    <h1 class="projectName">{{$project->name}}</h1>
-    <div class="box">
+    <div class="projectNameDiv">
+        <h1 class="projectName">{{$project->name}}</h1>
+    </div>
+    <div class="projectTaskBox">
         <div class="boxTask">
             @include('alerts.error')
             <div class="scrollable-div">

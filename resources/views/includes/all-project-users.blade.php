@@ -3,8 +3,10 @@
 @section('content')
     <div class="bg-modal">
         <div class="modal-content2">
-            <div class="close" id="close"><a href="{{ route('projects.index') }}"><button>+</button></a></div>
-    <h3 class="showMembersH">Project members:</h3>
+            <div class="close" id="close"><a href="{{ route('projects.index') }}">
+                    <button>+</button>
+                </a></div>
+            <h3 class="showMembersH">Project members:</h3>
             <div class="showMembers">
                 <div class="showMembersContent">
                     @foreach($users as $user)
@@ -25,10 +27,10 @@
 
                     @foreach($usersProject as $userProject)
                         @if($userProject->name === Auth::user()->name)
-                            - {{ $userProject->name }} (me)
+                            {{ $userProject->name }} (me)
                             <br>
                         @else
-                            - {{ $userProject->name }}
+                            {{ $userProject->name }}
                             <br>
                         @endif
                     @endforeach
@@ -37,5 +39,5 @@
         </div>
     </div>
 
-@include('scripts.scripts')
+    @include('scripts.scripts')
 @endsection
