@@ -39,7 +39,8 @@
                             <i class="fa-solid fa-user"></i>
                             <p>Created by:</p>
                         </div>
-                        <p>{{ $projectTask->getUserNameById($projectTask->user_id) }}</p>
+                        <a href="{{ route('users.show', $projectTask->user_id) }}" class="userLink">
+                            <p>{{ $projectTask->getUserNameById($projectTask->user_id) }}</p></a>
                     </div>
                 </div>
                 <div class="taskDescription">
@@ -56,11 +57,15 @@
                         <p>Comments</p>
                     </div>
                     @forelse($projectTask->comments as $comment)
-                        {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }} -
-                        {{ $comment->content }}
-                        | {{ \Carbon\Carbon::parse($comment->created_at)->format('M-d') }} |
-                        ( {{ $comment->getUserNameById($comment->user_id) }} )
-                        <br>
+                        <div class="bigComment">
+                            <div class="commentUser">
+                                <img src="{{ $comment->getUserImageById($comment->user_id) }}" class="profilePhoto">
+                                <p> {{ $comment->getUserNameById($comment->user_id) }} </p>
+                                {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }}
+                                | {{ \Carbon\Carbon::parse($comment->created_at)->format('M-d') }} |
+                            </div>
+                            <p class="commentText">{{ $comment->content }}</p>
+                        </div>
                     @empty
                         <p>No comment found</p>
                     @endforelse

@@ -45,4 +45,17 @@ class ProjectTaskComment extends Model
             return null;
         }
     }
+
+    /**
+     * @param int $userId
+     */
+    public function getUserImageById(int $userId)
+    {
+        $user = User::find($userId);
+        if ($user->image) {
+            return url('storage/' . $user->image);
+        } else {
+            return 'https://ui-avatars.com/api/?name=' . $user->name;
+        }
+    }
 }

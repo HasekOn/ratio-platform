@@ -3,7 +3,9 @@
 @section('auth')
     <section class="register">
         <form action="{{ route('login') }}" method="post" class="registration-form">
-            @include('alerts.success')
+            <div class="successLouOut">
+                @include('alerts.success')
+            </div>
             @csrf
             <h3 class="register-headline">Login</h3>
             <div class="registration-wrap">

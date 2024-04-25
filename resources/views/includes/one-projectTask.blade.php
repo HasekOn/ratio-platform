@@ -11,7 +11,8 @@
                           onsubmit="return confirm('Are you sure?');">
                         @csrf
                         @method('delete')
-                        <a class="taskEditing" href="{{ route('projectTasks.edit', $projectTask->id) }}"><i class="fa-solid fa-pencil"></i></a>
+                        <a class="taskEditing" href="{{ route('projectTasks.edit', $projectTask->id) }}"><i
+                                class="fa-solid fa-pencil"></i></a>
                         <button class="taskDelete" type="submit"><i class="fa-solid fa-trash"></i></button>
                     </form>
                 </div>
@@ -46,7 +47,8 @@
                             <i class="fa-solid fa-user"></i>
                             <p>Created by:</p>
                         </div>
-                        <p>{{ $projectTask->getUserNameById($projectTask->user_id) }}</p>
+                        <a href="{{ route('users.show', $projectTask->user_id) }}" class="userLink">
+                            <p>{{ $projectTask->getUserNameById($projectTask->user_id) }}</p></a>
                     </div>
                 </div>
                 <div class="taskDescription">
@@ -63,22 +65,24 @@
                         <p>Comments</p>
                     </div>
                     @forelse($projectTask->comments as $comment)
-                        {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }} -
-                        {{ $comment->content }}
-                        | {{ \Carbon\Carbon::parse($comment->created_at)->format('M-d') }} |
-                        ( {{ $comment->getUserNameById($comment->user_id) }} )
-                        <br>
+                        <div class="bigComment">
+                            <div class="commentUser">
+                                <img src="{{ $comment->getUserImageById($comment->user_id) }}" class="profilePhoto">
+                                <p> {{ $comment->getUserNameById($comment->user_id) }} </p>
+                                {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }}
+                                | {{ \Carbon\Carbon::parse($comment->created_at)->format('M-d') }} |
+                            </div>
+                            <p class="commentText">{{ $comment->content }}</p>
+                        </div>
                     @empty
                         <p>No comment found</p>
                     @endforelse
-                    <div class="singleTask">
-                        <div>
+                    <div class="projectTaskCommentInput">
                             <form method="post" action="{{ route('projectTasks.comments.store', $projectTask->id) }}">
                                 @csrf
-                                <textarea rows="1" name="content"></textarea>
+                                <textarea rows="1" name="content" class="searchBar"></textarea>
                                 <button class="loginText" type="submit">Post comment</button>
                             </form>
-                        </div>
                     </div>
                 </div>
             </div>

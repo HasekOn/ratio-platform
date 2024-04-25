@@ -58,16 +58,16 @@
                     @forelse($task->comments as $comment)
                         {{ \Carbon\Carbon::parse($comment->created_at)->format('H:i') }} -
                         {{ $comment->content }}
-                        | {{ \Carbon\Carbon::parse($comment->created_at)->format('M-d') }} |
+                        | {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }} |
                         <br>
                     @empty
                         <p>No comment found</p>
                     @endforelse
-                    <div class="singleTask">
-                        <form method="post" action="{{ route('tasks.comments.store', $task->id) }}">
+                    <div class="commentDiv">
+                        <form method="post" action="{{ route('tasks.comments.store', $task->id) }}" class="commentInput">
                             @csrf
-                            <textarea rows="1" name="content"></textarea>
-                            <button class="loginText" type="submit">Post comment</button>
+                            <textarea rows="1" name="content" placeholder="Add a comment"  class="searchBar"></textarea>
+                            <button class="searchBtn" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
                         </form>
                     </div>
                 </div>

@@ -7,63 +7,138 @@
         <h1>Info o uzivateli</h1>
         @if($editing ?? false)
             <form action="{{ route('users.update', $user->id) }}" method="post" enctype="multipart/form-data"
-                  class="profilPage">
+                  class="profilePage">
                 @csrf
                 @method('put')
-                <p>Profile picture: </p>
-                @if($user->image === null)
-                    <input name="image" class="editing" type="file">
-                    @error('image')
+                <div class="editingProfile">
+                    <h2>Edit profile</h2>
+                    <p>Profile picture: </p>
+                    @if($user->image === null)
+                        <div class="photoUploaded">
+                            <div class="photo">
+                                <img src="{{ Auth::user()->getImageURL() }}" class="profilePhotoBig">
+                            </div>
+                            <div class="photoText">
+                                <p>Upload your photo</p>
+                                <p>Your photo should be in PNG or JPG format</p>
+                                <div class="photoButtons">
+                                    <input name="image" class="editing" type="file">
+                                    @error('image')
+                                    <span> {{ "[" . $message . "]" }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="photoUploaded">
+                            <div class="photo">
+                                <img src="{{ Auth::user()->getImageURL() }}" class="profilePhotoBig">
+                            </div>
+                            <div class="photoText">
+                                <p>Upload your photo</p>
+                                <p>Your photo should be in PNG or JPG format</p>
+                                <div class="photoButtons">
+                                    <input name="image" type="file">
+                                    @error('image')
+                                    <span> {{ "[" . $message . "]" }}</span>
+                                    @enderror
+                                    <a href="{{ route('removeProfilePhoto', $user->id) }}"
+                                       class="removePhoto"
+                                       onclick="return confirm('Do you really want to remove the profile picture?')">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="profileInfoDiv">
+                        <div class="profileInfo">
+                            <i class="fa-solid fa-user"></i>
+                            <p>Username:</p>
+                        </div>
+                    </div>
+                    <input name="name" class="editing" type="text" value="{{ $user->name }}">
+                    @error('name')
                     <span> {{ "[" . $message . "]" }}</span>
                     @enderror
-                @else
-                    <img src="{{ Auth::user()->getImageURL() }}" class="profilePhotoBig">
-                    <a href="{{ route('removeProfilePhoto', $user->id) }}" class="editProfile">Remove profile photo</a>
-                    <input name="image" class="editing" type="file">
-                    @error('image')
+                    <div class="profileInfoDiv">
+                        <div class="profileInfo">
+                            <i class="fa-solid fa-align-justify"></i>
+                            <p>Bio:</p>
+                        </div>
+                    </div>
+                    <textarea name="bio" id="bio" rows="3" class="editing">{{ $user->bio }}</textarea>
+                    @error('bio')
                     <span> {{ "[" . $message . "]" }}</span>
                     @enderror
-                @endif
-                <p>Username: </p>
-                <input name="name" class="editing" type="text" value="{{ $user->name }}">
-                @error('name')
-                <span> {{ "[" . $message . "]" }}</span>
-                @enderror
-                <p>Bio: </p>
-                <textarea name="bio" id="bio" rows="3" class="editing">{{ $user->bio }}</textarea>
-                @error('bio')
-                <span> {{ "[" . $message . "]" }}</span>
-                @enderror
-                <button class="saveProfile">Save</button>
-                @can('update', $user)
-                    <a href="{{ route('profile') }}" class="editProfile">Return to profile</a>
-                @endcan
+                    <div class="saveButtons">
+                        @can('update', $user)
+                            <a href="{{ route('profile') }}" class="cancelProfile">cancel</a>
+                        @endcan
+                        <button class="saveProfile">Save</button>
+                    </div>
+                </div>
             </form>
         @else
-            <div class="profilePage">
+            <div class="photoContainer">
+                <h1>Profile page</h1>
                 <img src="{{ $user->getImageURL() }}" class="image">
-                <br>
-                <p>Username: {{ $user->name }}</p>
-                <br>
-                <p>Email: {{ $user->email }}</p>
-                <br>
-                @if(Auth::id() == $user->id)
-                    <p>Tasks count: {{ $user->tasks()->count() }}</p>
-                    <br>
-                    <p>Projects count: {{ $user->allUserProjects() }}</p>
-                    <br>
-                @endif
-                <p>Bio: {{ $user->bio }}</p>
-                <hr>
                 @can('update', $user)
-                    <a href="{{ route('users.edit', $user->id) }}" class="editProfile">Edit profile</a>
+                    <a href="{{ route('users.edit', $user->id) }}" class="editProfile">Edit
+                        profile</a>
                 @endcan
             </div>
+            <div class="profilePage">
+
+                <div class="profileInfoDiv">
+                    <div class="profileInfo">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Username:</p>
+                    </div>
+                    <p>{{ $user->name }}</p>
+                </div>
+
+                <div class="profileInfoDiv">
+                    <div class="profileInfo">
+                        <i class="fa-solid fa-envelope"></i>
+                        <p>Email:</p>
+                    </div>
+                    <p>{{ $user->email }}</p>
+                </div>
+
+                @if(Auth::id() == $user->id)
+                    <div class="profileInfoDiv">
+                        <div class="profileInfo">
+                            <i class="fa-solid fa-list-check"></i>
+                            <p>Tasks count:</p>
+                        </div>
+                        <p>{{ $user->tasks()->count() }}</p>
+                    </div>
+
+
+                    <div class="profileInfoDiv">
+                        <div class="profileInfo">
+                            <i class="fa-solid fa-people-group"></i>
+                            <p>Projects count:</p>
+                        </div>
+                        <p>{{ $user->allUserProjects() }}</p>
+                    </div>
+
+                @endif
+            </div>
+
+            @if($user->bio !== null)
+                <div class="profileBio">
+                    <div class="profileInfo">
+                        <i class="fa-solid fa-align-justify"></i>
+                        <p>Bio:</p>
+                    </div>
+                    <p>{{ $user->bio }}</p>
+                </div>
+            @endif
 
             <div class="box">
                 @can('update', $user)
                     <div class="boxTaskProfile">
-                        My Projects:
+                        <h3>My Projects:</h3>
                         @forelse($projects as $project)
                             @include('includes.project-card')
                         @empty
@@ -71,7 +146,7 @@
                         @endforelse
                     </div>
                     <div class="boxTaskProfile">
-                        Joined Projects:
+                        <h3>Joined Projects:</h3>
                         @forelse($joinedProjects as $project)
                             @include('includes.project-card')
                         @empty
@@ -81,7 +156,7 @@
                 @endcan
                 @can('update', $user)
                     <div class="boxTaskProfileLast">
-                        Tasks:
+                        <h3>Tasks:</h3>
                         @forelse($tasks as $task)
                             @include('includes.task-card')
                         @empty

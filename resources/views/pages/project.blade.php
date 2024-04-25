@@ -9,7 +9,7 @@
             @include('alerts.error')
             <h1 class="projectText">Projects</h1>
             <h2 class="projectText">Search</h2>
-            <form action="{{ route('projects.index') }}" method="get" class="hovno">
+            <form action="{{ route('projects.index') }}" method="get" class="projectForm">
                 <input value="{{ request('search', '') }}" class="searchBar" placeholder="..." type="text"
                        name="search">
                 <button class="searchBtn">Search</button>
