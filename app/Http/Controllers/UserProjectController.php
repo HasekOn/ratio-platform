@@ -59,7 +59,7 @@ class UserProjectController extends Controller
 
         if ($user && $project->isProjectMember($user) && $user->id !== $project->creator_id) {
             $project->users()->detach($user->id);
-            return redirect()->route('projects.index');
+            return redirect()->route('projects.index')->with('success', "User has been successfully removed from project.");
         } elseif ($user?->id === $project->creator_id) {
             return redirect()->route('projects.index')->with('error', "You cant remove yourself from project yet");
         } else {

@@ -5,6 +5,7 @@
     <body>
     <div class="projectNameDiv">
         <h1 class="projectName">{{$project->name}}</h1>
+        <p>{{ $project->description }}</p>
     </div>
     <div class="projectTaskBox">
         <div class="boxTask">
