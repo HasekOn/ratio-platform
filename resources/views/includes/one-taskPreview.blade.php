@@ -3,7 +3,7 @@
         <div class="bigTask">
             <div class="taskHeader">
                 <div>
-                    <p class="taskName">{{ $task->name }}</p>
+                    <p class="taskName">{{ $task->name }} [RP-{{ $task->id }}]</p>
                 </div>
                 <div class="taskUpdate">
                     <p>Last Updated: {{ \Carbon\Carbon::parse($task->updated_at)->diffForHumans()}}</p>

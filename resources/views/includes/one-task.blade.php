@@ -3,7 +3,7 @@
         <div class="bigTask">
             <div class="taskHeader">
                 <div>
-                    <p class="taskName">{{ $task->name }}</p>
+                    <p class="taskName">{{ $task->name }} [RP-{{ $task->id }}]</p>
                 </div>
                 <div class="taskUpdate">
                     <p>Last Updated: {{ \Carbon\Carbon::parse($task->updated_at)->diffForHumans()}}</p>
@@ -12,7 +12,7 @@
                         @csrf
                         @method('delete')
                         <a class="taskEditing" href="{{ route('tasks.edit', $task->id) }}"><i
-                                class="fa-solid fa-pencil"></i></a>
+                                    class="fa-solid fa-pencil"></i></a>
                         <button class="taskDelete" type="submit"><i class="fa-solid fa-trash"></i></button>
                     </form>
                 </div>
@@ -69,7 +69,7 @@
                                     @csrf
                                     @method('delete')
                                     <button class="taskCommentDelete" type="submit"><i
-                                            class="fa-solid fa-trash"></i>
+                                                class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
                             </div>

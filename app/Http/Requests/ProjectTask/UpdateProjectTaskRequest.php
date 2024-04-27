@@ -29,6 +29,7 @@ class UpdateProjectTaskRequest extends FormRequest
             'status' => 'nullable',
             'effort' => 'nullable',
             'priority' => 'nullable',
+            'assignee' => 'nullable',
         ];
     }
 }

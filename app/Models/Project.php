@@ -33,7 +33,7 @@ class Project extends Model
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'user_project', 'project_id', 'user_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'user_projects', 'project_id', 'user_id')->withTimestamps();
     }
 
     /**
@@ -62,5 +62,19 @@ class Project extends Model
     public function tasks(): HasMany
     {
         return $this->hasMany(ProjectTask::class);
+    }
+
+    /**
+     * @param int $userId
+     * @return string|null
+     */
+    public function getUserNameById(int $userId): string|null
+    {
+        $user = User::find($userId);
+        if ($user) {
+            return $user->name;
+        } else {
+            return null;
+        }
     }
 }

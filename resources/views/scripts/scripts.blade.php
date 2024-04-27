@@ -82,6 +82,17 @@
             }
         }
     }
+
+    function updateCounter() {
+        var input = document.getElementById('text-area');
+        var counter = document.getElementById('counter');
+        counter.innerText = input.value.length + '/1500';
+        if (input.value.length >= 1500) {
+            counter.style.color = 'red';
+        } else {
+            counter.style.color = '#e3e4e5';
+        }
+    }
 </script>
 
 @yield('scripts')

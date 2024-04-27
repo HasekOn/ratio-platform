@@ -3,7 +3,7 @@
         <div class="bigTask">
             <div class="taskHeader">
                 <div>
-                    <p class="taskName">{{ $projectTask->name }}</p>
+                    <p class="taskName">{{ $projectTask->name }} [RP-{{ $projectTask->id }}]</p>
                 </div>
                 <div class="taskUpdate">
                     <p>Last Updated: {{ \Carbon\Carbon::parse($projectTask->updated_at)->diffForHumans()}}</p>
@@ -41,6 +41,20 @@
                         </div>
                         <a href="{{ route('users.show', $projectTask->user_id) }}" class="userLink">
                             <p>{{ $projectTask->getUserNameById($projectTask->user_id) }}</p></a>
+                    </div>
+                    <div>
+                        <div class="taskCreator">
+                            <i class="fa-solid fa-user-check"></i>
+                            <p>Assignee:</p>
+                        </div>
+                        @if($projectTask->assignee === null)
+                            <p>Nobody</p>
+                        @else
+                            <div class="assignedUsers">
+                                <a href="{{ route('users.show', $projectTask->assignee) }}" class="userLink">
+                                    <p>{{ $projectTask->getUserNameById($projectTask->assignee) }}</p></a>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="taskDescription">

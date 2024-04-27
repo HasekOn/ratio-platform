@@ -6,6 +6,7 @@ use App\Http\Requests\Projet\CreateProjectRequest;
 use App\Http\Requests\Projet\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\ProjectTask;
+use App\Models\UserProject;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,10 @@ class ProjectController extends Controller
 
         $projectTasks = $project->tasks()->orderBy('created_at', 'desc')->get();
 
-        return view('pages.project-show', compact('project', 'projectTasks'));
+        $usersProject = UserProject::where('project_id', $project->id)->get();
+        $projects = Project::where('id', $project->id)->get();
+
+        return view('pages.project-show', compact('project', 'projectTasks', 'usersProject', 'projects'));
     }
 
 

@@ -32,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/tasks/{task}/preview', [TaskController::class, 'showTaskPreview'])->name('taskPreview');
     Route::get('/projects/{projectTask}/preview', [ProjectController::class, 'projectTaskPreview'])->name('projectTaskPreview');
     Route::get('profilePhoto/{user}', [UserController::class, 'removeProfilePhoto'])->name('removeProfilePhoto');
+    Route::post('assigneeToProject/{projectTask}', [ProjectTaskController::class, 'assigneeToProject'])->name('assigneeToProject');
+    Route::post('unassignToProject/{projectTask}', [ProjectTaskController::class, 'unassignToProject'])->name('unassignToProject');
     Route::resource('tasks', TaskController::class);
     Route::resource('users', UserController::class)->only(['show', 'edit', 'update']);
     Route::resource('projects', ProjectController::class);
