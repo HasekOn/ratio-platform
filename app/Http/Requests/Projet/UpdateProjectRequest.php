@@ -23,8 +23,8 @@ class UpdateProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50',
-            'description' => 'max:500',
+            'name' => 'required|max:150',
+            'description' => 'max:1500',
             'timeEst' => 'nullable|after_or_equal:today',
             'effort' => 'nullable',
         ];

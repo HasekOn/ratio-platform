@@ -191,9 +191,6 @@ ul li:hover {
     padding-top: 61px;
 }
 
-.projectName {
-}
-
 .projectTaskBox {
     display: flex;
     width: 100%;
@@ -565,8 +562,8 @@ ul li:hover {
     cursor: pointer;
     border-radius: 20px;
     padding: 15px;
-    width: 300px;
-    height: max-content;
+    width: 320px;
+    height: 180px;
     position: relative;
     transition: all ease 300ms;
 }
@@ -784,10 +781,18 @@ div span {
     border-radius: 10px;
     border: none;
     transition: all ease 300ms;
+    padding: 10px;
 }
 
 .projectCardBtn:hover {
     color: red;
+}
+
+.projectCardButtons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
 }
 
 .verifyBtn {
@@ -815,7 +820,7 @@ div span {
 
 dialog {
     width: 70%;
-    height: 70%;
+    height: max-content;
     border-radius: 4px;
     text-align: center;
     padding: 10px;
@@ -1133,7 +1138,7 @@ input::file-selector-button {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
-    height: 80%;
+    height: max-content;
     border-radius: 4px;
     text-align: center;
     color: white;
@@ -1238,6 +1243,11 @@ input::file-selector-button {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.openBigTask {
+    display: flex;
+    width: max-content;
 }
 
 .registration-wrap {

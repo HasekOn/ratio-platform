@@ -8,7 +8,7 @@
             <p>Complete by: {{ \Carbon\Carbon::parse($task->timeEst)->format('M-d') }}</p>
         @endif
     </div>
-    <a href="{{ route('tasks.show', $task->id) }}">
+    <a href="{{ route('tasks.show', $task->id) }}" class="openBigTask">
         <div class="openTask">
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
         </div>

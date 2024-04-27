@@ -9,7 +9,7 @@
         @endif
         <p>Created by: {{ $task->getUserNameById($task->user_id) }}</p>
     </div>
-    <a href="{{ route('projectTasks.show', $task->id) }}">
+    <a href="{{ route('projectTasks.show', $task->id) }}" class="openBigTask">
         <div class="openTask">
             <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
         </div>
