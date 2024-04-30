@@ -46,16 +46,18 @@
     }, 3500);
 
     $(document).ready(function () {
-        $('.task-link').click(function (e) {
-            e.preventDefault();
+        if (window.innerWidth > 680) {
+            $('.task-link').click(function (e) {
+                e.preventDefault();
 
-            var taskId = $(this).data('id');
-            var taskShowUrl = $(this).hasClass('project-task-link') ? '/projects/' + taskId + '/preview' : '/tasks/' + taskId + '/preview';
+                var taskId = $(this).data('id');
+                var taskShowUrl = $(this).hasClass('project-task-link') ? '/projects/' + taskId + '/preview' : '/tasks/' + taskId + '/preview';
 
-            $.get(taskShowUrl, function (data) {
-                $('#task-details').html(data);
+                $.get(taskShowUrl, function (data) {
+                    $('#task-details').html(data);
+                });
             });
-        });
+        }
     });
 
     function myFunction() {

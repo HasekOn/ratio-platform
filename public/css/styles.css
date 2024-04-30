@@ -110,6 +110,23 @@ ul li:hover {
     color: black;
 }
 
+.logoutDisplayBig {
+    font-size: 16px;
+    padding: 5px;
+    padding-inline: 10px;
+    background-color: #7BC9FF;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all ease 300ms;
+}
+
+.logoutDisplayBig:hover {
+    background-color: #8576FF;
+    color: black;
+}
+
 .userLink {
     transition: all ease 300ms;
 }
@@ -149,6 +166,7 @@ ul li:hover {
 
 .menu {
     display: none;
+    color: white;
 }
 
 .menuContent {
@@ -193,6 +211,16 @@ ul li:hover {
     flex-direction: row;
     padding-top: 50px;
     justify-content: center;
+}
+
+.boxUser {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+    padding-top: 50px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .boxPage {
@@ -360,7 +388,6 @@ ul li:hover {
 
 .boxTaskProfile {
     margin-left: 10px;
-    width: 30%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -369,7 +396,6 @@ ul li:hover {
 
 .boxTaskProfileLast {
     margin-left: 10px;
-    width: 30%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -471,6 +497,7 @@ ul li:hover {
     align-items: center;
     gap: 10px;
     margin-top: 20px;
+    justify-content: center;
 }
 
 .profileInfo > i {
@@ -779,6 +806,9 @@ div span {
 .openTask {
     transition: all ease 300ms;
     width: max-content;
+    position: absolute;
+    top: 10px;
+    right: 15px;
 }
 
 .openTask:hover {
@@ -1189,7 +1219,9 @@ input {
 .taskButtons {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .createTaskBtn {
@@ -1643,6 +1675,44 @@ input::file-selector-button {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-template-rows: repeat(1, minmax(0, 1fr));
     }
+
+    .createTaskBtn {
+        font-size: 14px;
+        border-radius: 10px;
+        border: none;
+        font-weight: bold;
+        padding: 10px;
+        height: max-content;
+        width: max-content;
+        margin-bottom: 10px;
+
+    }
+
+    .logoutDisplayBig {
+        display: none;
+    }
+
+    .projectTaskCommentInput{
+        width: 100%;
+    }
+
+    .commentInputUserBar {
+        display: none;
+    }
+
+    .createTaskAttributes {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .createProjectTaskAttributes {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (max-width: 750px) {
+    .photoButtons {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 680px) {
@@ -1667,8 +1737,32 @@ input::file-selector-button {
         grid-template-columns: repeat(1, minmax(0, 1fr));
         grid-template-rows: repeat(1, minmax(0, 1fr));
     }
+
+    .boxTask {
+        width: 100%;
+    }
+
+    .task-details {
+        display: none;
+    }
+
+    .photoUploaded {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 364px) {
+    .profileName {
+        display: none;
+    }
 
+    .boxTaskPage {
+        padding-inline: 5px;
+    }
+
+    .commentText {
+        width: 100%;
+    }
 }

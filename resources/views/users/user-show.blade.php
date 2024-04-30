@@ -135,7 +135,7 @@
                 </div>
             @endif
 
-            <div class="box">
+            <div class="boxUser">
                 @can('update', $user)
                     <div class="boxTaskProfile">
                         <h3>My Projects:</h3>
@@ -168,4 +168,5 @@
         @endif
     </div>
     </body>
+    @include('scripts.scripts')
 @endsection

@@ -15,7 +15,7 @@
 @auth()
     <header class="header">
         <nav class="navWrap" role="navigation">
-            <a href="{{ url('/') }}"><img class="logo" src="images/ratio.png" alt="logo"></a>
+            <a href="{{ url('/') }}"><img class="logo" src="/images/ratio.png" alt="logo"></a>
             <div class="menu">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -25,6 +25,10 @@
                     <li><a href="{{ url('/projects') }}">Projects</a></li>
                     <li>Time sheet</li>
                     <li>Ideas</li>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button class="logout">Logout</button>
+                    </form>
                 </ul>
                 <div class="closeBtn">
                     <i class="fa-solid fa-xmark"></i>
@@ -44,7 +48,7 @@
         <div class="header-right">
             <form action="{{ route('logout') }}" method="post">
                 @csrf
-                <button class="logout">Logout</button>
+                <button class="logoutDisplayBig">Logout</button>
             </form>
             <a href="{{ route('profile') }}" class="">
                 <div class="profile">
